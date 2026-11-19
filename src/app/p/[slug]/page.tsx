@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import QRCode from 'qrcode';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FileList } from '@/components/FileList';
 import { CheckIcon, EyeIcon } from '@/components/Icons';
 import { Markdown } from '@/components/Markdown';
 import { PdfSlides } from '@/components/PdfSlides';
+import { Reflection } from '@/components/Reflection';
+import { SharePanel } from '@/components/SharePanel';
 import { TypeLine } from '@/components/PostCard';
 import { SiteHeader, type NavKey } from '@/components/SiteHeader';
 import { TrainerEmbed } from '@/components/TrainerEmbed';
@@ -15,6 +18,16 @@ import { publicUrl } from '@/lib/supabase';
 import { contentChips, initials, type Asset, type PostFull } from '@/lib/types';
 
 export const revalidate = 60;
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://ib-teachers-hub.vercel.app').replace(/\/+$/, '');
+
+async function qrSvg(url: string): Promise<string | null> {
+  try {
+    return await QRCode.toString(url, { type: 'svg', margin: 1, errorCorrectionLevel: 'M', color: { dark: '#0C2A25', light: '#FFFFFF' } });
+  } catch {
+    return null;
+  }
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -50,6 +63,8 @@ export default async function PostPage({ params }: Props) {
   if (trainer) toc.push({ id: 'trainer', title: 'Тренажёр' });
 
   const s = stats[post.id];
+  const postUrl = `${SITE_URL}/p/${post.slug}`;
+  const qr = await qrSvg(postUrl);
   const navKey: NavKey | null = post.type === 'event' ? null : post.type;
 
   return (
@@ -106,6 +121,8 @@ export default async function PostPage({ params }: Props) {
 
           <FileList files={files} />
 
+          <Reflection postId={post.id} />
+
           <footer className="post-foot">
             <span className="stats">
               <span title="Просмотры">
@@ -121,8 +138,8 @@ export default async function PostPage({ params }: Props) {
           </footer>
         </article>
 
-        {toc.length > 0 && (
-          <aside className="toc-wrap">
+        <aside className="toc-wrap">
+          {toc.length > 0 && (
             <nav className="toc" aria-label="В этом материале">
               <h3 className="label">В ЭТОМ МАТЕРИАЛЕ</h3>
               <div className="links">
@@ -131,10 +148,12 @@ export default async function PostPage({ params }: Props) {
                     {t.title}
                   </a>
                 ))}
+                <a href="#reflection">Рефлексия</a>
               </div>
             </nav>
-          </aside>
-        )}
+          )}
+          <SharePanel url={postUrl} qrSvg={qr} />
+        </aside>
       </div>
     </>
   );

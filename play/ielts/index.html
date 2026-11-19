@@ -6,51 +6,56 @@
 <title>IELTS notebook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:light;
-  --paper:#FAFAF6; --card:#FFFFFF; --ink:#1E2230; --soft:#5B6172; --rule:#DADDE4; --dot:#D2D5DC;
-  --hl:#DDEA5C; --hl-bg:#E8F28A; --hl-ink:#1E2230;
-  --ok:#2A7148; --ok-bg:#E2F1E7; --bad:#A8352B; --bad-bg:#F8E2DF; --warn-bg:#FFF3D6; --focus:#3557C9;
+  --paper:#F3F6F4; --card:#FFFFFF; --ink:#13201D; --soft:#55645F; --rule:#D6E2DD;
+  --head:#0C2A25; --head-soft:#A7BDB6; --acc:#0F6B5E; --acc-bg:#E8F3EE; --tint:#DDEDE7;
+  --hl:#F2B544; --hl-bg:#FFF1CC; --hl-ink:#13201D;
+  --ok:#2A7148; --ok-bg:#E2F1E7; --bad:#A8352B; --bad-bg:#F8E2DF; --warn-bg:#FFF6DE; --focus:#1C63C2;
+  --serif:"Playfair Display",Georgia,serif;
   box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --paper:#18191D; --card:#212329; --ink:#ECEBE4; --soft:#A6AAB5; --rule:#353843; --dot:#2B2E36;
-    --hl:#C8D84A; --hl-bg:rgba(200,216,74,.30); --hl-ink:#16180E;
-    --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EA6FF;
+    --paper:#0F1A18; --card:#16231F; --ink:#E6EEEA; --soft:#9DB0A9; --rule:#2A3A35;
+    --head:#0A221E; --head-soft:#93ABA3; --acc:#4CC3AA; --acc-bg:#1B3430; --tint:#1E3A34;
+    --hl:#F2B544; --hl-bg:rgba(242,181,68,.20); --hl-ink:#13201D;
+    --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EB8FF;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#18191D; --card:#212329; --ink:#ECEBE4; --soft:#A6AAB5; --rule:#353843; --dot:#2B2E36;
-  --hl:#C8D84A; --hl-bg:rgba(200,216,74,.30); --hl-ink:#16180E;
-  --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EA6FF;
+  --paper:#0F1A18; --card:#16231F; --ink:#E6EEEA; --soft:#9DB0A9; --rule:#2A3A35;
+  --head:#0A221E; --head-soft:#93ABA3; --acc:#4CC3AA; --acc-bg:#1B3430; --tint:#1E3A34;
+  --hl:#F2B544; --hl-bg:rgba(242,181,68,.20); --hl-ink:#13201D;
+  --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EB8FF;
 }
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(var(--dot) 1.1px,transparent 1.5px);background-size:22px 22px;font:17px/1.55 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
-.top-in{max-width:880px;margin:0 auto;padding:.6rem 1rem .5rem}
+body{margin:0;color:var(--ink);background-color:var(--paper);font:16.5px/1.6 Onest,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--head)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--head);color:#FFFFFF}
+.top-in{max-width:920px;margin:0 auto;padding:.75rem 1rem 0}
 .brand{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap}
-.brand h1{font-family:Caveat,"Segoe Print","Comic Sans MS",cursive;font-weight:700;font-size:2.2rem;line-height:1;margin:0}
-.brand p{margin:0;color:var(--soft);font-size:.92rem}
-a.home-link{font-size:.9rem;color:var(--soft)}
-nav.tabs{display:flex;gap:.3rem;overflow-x:auto;padding:.5rem 0 .1rem;scrollbar-width:none}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.2;margin:0;color:#FFFFFF;display:flex;align-items:center;gap:.7rem}
+.brand h1::before{content:"";width:12px;height:12px;background:#2FB59E;box-shadow:5px 5px 0 var(--hl);margin-right:.35rem;flex:none}
+.brand p{margin:0;color:var(--head-soft);font-size:.9rem}
+a.home-link{font-size:.9rem;color:var(--head-soft)}
+nav.tabs{display:flex;gap:1.3rem;overflow-x:auto;padding:.35rem 0 0;scrollbar-width:none}
 nav.tabs::-webkit-scrollbar{display:none}
-nav.tabs .tab{flex:none;font:inherit;background:none;min-height:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:.4rem .85rem;border-radius:999px;color:var(--soft);text-decoration:none;border:1px solid transparent}
-nav.tabs .tab:hover{border-color:var(--rule);color:var(--ink)}
-nav.tabs .tab[aria-current="page"]{background:var(--hl);color:var(--hl-ink);font-weight:700}
-main{max-width:880px;margin:0 auto;padding:1.25rem 1rem 4rem}
-h2.title{font-family:Caveat,"Segoe Print","Comic Sans MS",cursive;font-weight:700;font-size:clamp(2.5rem,7vw,3.4rem);line-height:1;margin:.4rem 0 .3rem;display:inline-block;padding:0 .2em;background:linear-gradient(transparent 52%,var(--hl-bg) 52%,var(--hl-bg) 90%,transparent 90%)}
+nav.tabs .tab{flex:none;font:inherit;font-size:.95rem;font-weight:500;background:none;min-height:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:.6rem 0 .55rem;border-radius:0;color:var(--head-soft);text-decoration:none;border:0;border-bottom:2px solid transparent}
+nav.tabs .tab:hover{color:#FFFFFF;background:none}
+nav.tabs .tab[aria-current="page"]{color:#FFFFFF;font-weight:600;border-bottom-color:var(--hl)}
+main{max-width:920px;margin:0 auto;padding:1.6rem 1rem 4rem}
+h2.title{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,4.5vw,2.1rem);line-height:1.2;margin:.2rem 0 .4rem}
+h2.title::after{content:"";display:block;width:40px;height:3px;border-radius:2px;background:var(--hl);margin-top:.55rem}
 .lead{color:var(--soft);margin:.2rem 0 1.3rem;max-width:64ch}
-.block{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:1.1rem 1.2rem;margin:0 0 1.1rem}
-.block h3{font-size:1.12rem;margin:0 0 .3rem}
+.block{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:1.2rem 1.35rem;margin:0 0 1.1rem}
+.block h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:0 0 .35rem}
 .how{color:var(--soft);margin:0 0 .9rem;font-size:.95rem;max-width:66ch}
 .small{font-size:.9rem;color:var(--soft)}
 mark{background:var(--hl-bg);color:inherit;padding:0 .15em;border-radius:2px}
@@ -58,10 +63,10 @@ ul.tips,ol.steps{margin:0;padding-left:1.2rem}
 ul.tips li,ol.steps li{margin:.32rem 0}
 .mt{margin-top:.75rem}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem}
-button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:8px;padding:.45rem .9rem;cursor:pointer;min-height:42px}
+button{font:inherit;color:var(--ink);background:var(--card);border:1px solid #C9D9D2;border-radius:10px;padding:.45rem .9rem;cursor:pointer;min-height:42px}
 button:hover{background:var(--paper)}
-button.primary{background:var(--hl);border-color:var(--hl);color:var(--hl-ink);font-weight:700}
-button.primary:hover{filter:brightness(.96)}
+button.primary{background:var(--head);border-color:var(--head);color:#FFFFFF;font-weight:600}
+button.primary:hover{background:var(--acc);border-color:var(--acc)}
 button.link{border:none;text-decoration:underline;padding:.3rem .4rem;min-height:auto;color:var(--soft);background:none}
 button:disabled{opacity:.45;cursor:default}
 :is(button,a,input,select,textarea,summary,.card):focus-visible{outline:3px solid var(--focus);outline-offset:2px}
@@ -76,7 +81,7 @@ label.f{display:block;font-weight:700;font-size:.92rem;margin:.6rem 0 .25rem}
 .q{padding:.6rem 0;border-top:1px dashed var(--rule)}
 .q:first-child{border-top:none;padding-top:0}
 .qq{margin:.2rem 0 .4rem}
-.opt{display:block;width:100%;text-align:left;margin:.35rem 0;border-color:var(--rule);background:var(--paper)}
+.opt{display:block;width:100%;text-align:left;margin:.35rem 0;border-color:var(--rule);background:var(--card)}
 .opts.inline{display:flex;flex-wrap:wrap;gap:.4rem}
 .opts.inline .opt{width:auto;margin:0}
 .opt.right{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:700}
@@ -92,14 +97,14 @@ input[type="checkbox"]{width:22px;height:22px;accent-color:var(--ok);cursor:poin
 button.x{border:none;min-height:auto;padding:.2rem .5rem;color:var(--soft);font-size:1.2rem;background:none}
 .bar{height:10px;background:var(--rule);border-radius:99px;overflow:hidden}
 .bar>i{display:block;height:100%;width:0;background:var(--hl);transition:width .35s}
-.big{font-family:Caveat,"Segoe Print",cursive;font-size:2rem;line-height:1.1;margin:.2rem 0}
+.big{font-family:var(--serif);font-weight:600;font-size:1.6rem;line-height:1.2;margin:.2rem 0}
 .clock{font-size:clamp(3.2rem,13vw,5rem);font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
 .phases{display:flex;gap:4px;margin:.8rem 0}
 .phases div{border-radius:6px;padding:.35rem .45rem;font-size:.8rem;background:var(--rule);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .phases div.on{background:var(--hl);color:var(--hl-ink);font-weight:700}
 .phases div.done{opacity:.55;text-decoration:line-through}
-.card{min-height:190px;display:grid;place-items:center;text-align:center;border:1.5px dashed var(--soft);border-radius:12px;padding:1.2rem;cursor:pointer;background:var(--paper);user-select:none}
-.card .term{font-family:Caveat,"Segoe Print",cursive;font-size:2.3rem;line-height:1.1}
+.card{min-height:190px;display:grid;place-items:center;text-align:center;border:1px solid var(--rule);border-radius:16px;padding:1.2rem;cursor:pointer;background:var(--tint);user-select:none}
+.card .term{font-family:var(--serif);font-weight:600;font-size:1.9rem;line-height:1.2}
 .card .mean{font-size:1.2rem;font-weight:700}
 .pool .opt{margin:.35rem 0}
 ol.seq{margin:.6rem 0;padding-left:1.4rem;min-height:1rem}
@@ -117,9 +122,9 @@ ol.seq li{margin:.3rem 0;padding:.3rem .5rem;background:var(--hl-bg);border-radi
 .stat{display:grid;grid-template-columns:minmax(120px,190px) 1fr 2rem;gap:.6rem;align-items:center;margin:.35rem 0;font-size:.92rem}
 .tipbox{background:var(--hl-bg);border-radius:10px;padding:.7rem .9rem;margin-top:.8rem}
 .linker{display:grid;grid-template-columns:auto 1fr;gap:.3rem .9rem}
-.linker b{font-family:Caveat,"Segoe Print",cursive;font-size:1.35rem;line-height:1.2}
+.linker b{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.15rem;line-height:1.3;color:var(--acc)}
 /* lessons */
-details.lesson{background:var(--card);border:1px solid var(--rule);border-radius:12px;margin:0 0 .7rem}
+details.lesson{background:var(--card);border:1px solid var(--rule);border-radius:16px;margin:0 0 .7rem;overflow:hidden}
 details.lesson>summary{list-style:none;cursor:pointer;padding:.85rem 1.1rem;display:grid;grid-template-columns:1rem 1.5rem 1fr auto;gap:.5rem;align-items:center}
 details.lesson>summary::-webkit-details-marker{display:none}
 details.lesson>summary::before{content:"+";font-weight:700;font-size:1.3rem;color:var(--soft);text-align:center}
@@ -127,13 +132,13 @@ details.lesson[open]>summary::before{content:"−"}
 details.lesson[open]>summary{border-bottom:1px solid var(--rule)}
 .lt{font-weight:700}
 .lm{display:block;font-weight:400;font-size:.85rem;color:var(--soft)}
-.ld{font-size:.85rem;font-weight:700;color:var(--ok);white-space:nowrap}
+.ld{font-size:.85rem;font-weight:700;color:var(--acc);white-space:nowrap}
 .lb{padding:.6rem 1.2rem 1.1rem}
 .lb h4{margin:1.1rem 0 .35rem;font-size:1rem;display:flex;gap:.5rem;align-items:center}
 .lb h4 .n{display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--hl);color:var(--hl-ink);font-size:.8rem}
 .order{border-radius:8px;padding:.5rem .75rem;margin:.6rem 0;background:var(--paper);border:1px solid var(--rule)}
 .order.in b{color:var(--ok)} .order.not b{color:var(--bad)} .order.mixed b{color:var(--soft)}
-.practice-box{border:1.5px dashed var(--rule);border-radius:10px;padding:.8rem .9rem;margin:.6rem 0}
+.practice-box{border:1px solid var(--rule);border-radius:14px;padding:.9rem 1rem;margin:.6rem 0;background:var(--paper)}
 .instr{font-weight:700;font-size:.95rem;margin:0 0 .6rem}
 details.pass{background:var(--paper);border-radius:8px;padding:.5rem .8rem;margin:.4rem 0 .8rem;border:1px solid var(--rule)}
 details.pass summary{cursor:pointer;font-weight:700}
@@ -151,11 +156,19 @@ details.pass p{margin:.5rem 0;max-width:68ch}
 .mapg .pth{background:var(--hl-bg);border-style:dashed}
 .secprog{display:grid;grid-template-columns:7rem 1fr 3.5rem;gap:.6rem;align-items:center;margin:.4rem 0;font-size:.95rem}
 .fmt{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.7rem}
-.fmt div{border:1px solid var(--rule);border-radius:10px;padding:.7rem .85rem;background:var(--paper)}
-.fmt b{display:block;font-family:Caveat,"Segoe Print",cursive;font-size:1.6rem;line-height:1.1}
+.fmt div{border:1px solid var(--rule);border-radius:14px;padding:.8rem .95rem;background:var(--acc-bg)}
+.fmt b{display:block;font-family:var(--serif);font-weight:600;font-size:1.25rem;line-height:1.2;color:var(--acc)}
 .fmt p{margin:.25rem 0 0;font-size:.93rem}
 .wordlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.3rem 1rem;margin:.3rem 0}
 .wordlist span b{font-weight:700}
+.go{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem}
+.go button{display:block;text-align:left;border:1px solid var(--rule);border-radius:16px;padding:.9rem 1rem;background:var(--card);min-height:auto}
+.go button:hover{border-color:var(--acc)}
+.go b{display:block;font-family:var(--serif);font-weight:600;font-size:1.15rem}
+.go span{display:block;font-size:.88rem;color:var(--soft)}
+.intro{background:var(--tint);border-radius:18px;padding:1rem 1.2rem;margin:0 0 1.1rem;display:flex;gap:.8rem;align-items:center}
+.intro i{font-style:italic;color:var(--acc)}
+.intro .bulb{flex:none;width:38px;height:38px;border-radius:50%;background:var(--hl);display:grid;place-items:center}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -168,68 +181,38 @@ details.pass p{margin:.5rem 0;max-width:68ch}
       <p>Каждый тип задания: объяснение, практика, закрепление.</p>
     </div>
     <nav class="tabs" aria-label="Разделы">
-      <button type="button" class="tab" data-v="plan">План</button>
+      <button type="button" class="tab" data-v="start">Старт</button>
       <button type="button" class="tab" data-v="format">Формат и правила</button>
       <button type="button" class="tab" data-v="listening">Listening</button>
       <button type="button" class="tab" data-v="reading">Reading</button>
       <button type="button" class="tab" data-v="writing">Writing</button>
       <button type="button" class="tab" data-v="speaking">Speaking</button>
-      <button type="button" class="tab" data-v="words">Слова</button>
-      <button type="button" class="tab" data-v="mistakes">Мои ошибки</button>
     </nav>
   </div>
 </header>
 
 <main>
 <p id="jsErr" class="fb" hidden></p>
-<!-- PLAN -->
-<section id="v-plan">
-  <h2 class="title">Мой план</h2>
-  <p class="lead">Лайфхаки работают, только когда закреплены практикой. Проходите по одному типу задания в день и отмечайте прогресс.</p>
-
-  <div class="grid2">
-    <div class="block">
-      <h3>Дата экзамена</h3>
-      <input type="date" id="examDate" aria-label="Дата экзамена">
-      <p class="big" id="daysLeft"></p>
-    </div>
-    <div class="block">
-      <h3>Лайфхак дня</h3>
-      <p id="dailyTip" style="margin:.2rem 0 0"></p>
-    </div>
+<!-- START -->
+<section id="v-start">
+  <h2 class="title">С чего начать</h2>
+  <div class="intro">
+    <span class="bulb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0C2A25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"></path></svg></span>
+    <p style="margin:0">Выберите часть экзамена. В каждом типе задания: <i>объяснение</i>, практика и закрепление. Проверка ответов — сразу.</p>
+  </div>
+  <div class="go">
+    <button type="button" data-v="format"><b>Формат и правила</b><span>как устроен экзамен и как записывать ответы</span></button>
+    <button type="button" data-v="listening"><b>Listening</b><span>5 типов заданий, аудио и диктант</span></button>
+    <button type="button" data-v="reading"><b>Reading</b><span>10 типов заданий и таймер</span></button>
+    <button type="button" data-v="writing"><b>Writing</b><span>Task 1 и Task 2: структура и язык</span></button>
+    <button type="button" data-v="speaking"><b>Speaking</b><span>Part 1–3, PREP и тренажёр карточки</span></button>
   </div>
 
-
-  <div class="block">
-    <h3>Ваше имя для статистики</h3>
-    <p class="how">Необязательно. Без имени результаты отправляются анонимно. Имя видит только автор материала.</p>
-    <div class="row"><input id="myName" maxlength="60" placeholder="Например: Айгуль" aria-label="Ваше имя"><button id="saveName">Сохранить</button></div>
-    <p class="small" id="nameMsg" aria-live="polite"></p>
-    <p class="small" id="statsNote"></p>
-  </div>
-  <div class="block">
-    <h3>Пройденные типы заданий</h3>
-    <p class="how">Откройте урок в разделе, сделайте практику и закрепление, затем нажмите «Отметить как пройдено».</p>
-    <div id="secProg"></div>
-  </div>
-
-  <div class="block">
+  <div class="block mt" style="margin-top:1.3rem">
     <h3>Быстрая разминка</h3>
-    <p class="how">5 случайных вопросов из всех уроков. Делайте каждый день перед занятием: так правила остаются в памяти.</p>
+    <p class="how">5 случайных вопросов из всех уроков, чтобы проверить себя.</p>
     <div id="warmup"></div>
     <button class="mt" id="warmNew">Другие 5 вопросов</button>
-  </div>
-
-  <div class="block">
-    <h3>Неделя</h3>
-    <p class="how">Каждая строка — привычка. Меняйте список под своё расписание.</p>
-    <div class="scroll"><table class="week" id="week"></table></div>
-    <div class="row mt">
-      <input id="newTask" placeholder="Например: прочитать одну статью для удовольствия" aria-label="Новая привычка">
-      <button class="primary" id="addTask">Добавить</button>
-    </div>
-    <div class="mt"><div class="bar"><i id="wbar"></i></div><p class="small" id="wtxt"></p></div>
-    <button class="link" id="resetWeek">Очистить отметки для новой недели</button>
   </div>
 </section>
 
@@ -390,58 +373,12 @@ details.pass p{margin:.5rem 0;max-width:68ch}
   <div id="lessons-speaking"></div>
 </section>
 
-<!-- WORDS -->
-<section id="v-words" hidden>
-  <h2 class="title">Слова</h2>
-  <p class="lead">Учите слова тематическими группами. Нажмите на карточку, чтобы перевернуть, и отметьте, знали ли вы слово.</p>
-  <div class="block">
-    <label class="f" for="deckSel">Набор</label>
-    <select id="deckSel">
-      <option value="butterflies">Reading: climate change and butterflies</option>
-      <option value="micro">Listening: microplastics</option>
-      <option value="map">Listening: карты и направления</option>
-      <option value="trends">Writing Task 1: тренды и сравнения</option>
-      <option value="linkers">Writing Task 2: связки</option>
-    </select>
-    <div id="wordDeck" class="mt"></div>
-  </div>
-</section>
-
-<!-- MISTAKES -->
-<section id="v-mistakes" hidden>
-  <h2 class="title">Мои ошибки</h2>
-  <p class="lead">Практика без анализа закрепляет плохие привычки. Записывайте каждую ошибку и причину.</p>
-  <div class="block">
-    <h3>Добавить ошибку</h3>
-    <div class="grid2">
-      <div><label class="f" for="mSec">Часть</label>
-        <select id="mSec"><option>Listening</option><option>Reading</option><option>Writing</option><option>Speaking</option></select></div>
-      <div><label class="f" for="mType">Тип задания</label><input id="mType" placeholder="например, Matching headings"></div>
-      <div><label class="f" for="mMine">Мой ответ</label><input id="mMine"></div>
-      <div><label class="f" for="mRight">Правильный ответ</label><input id="mRight"></div>
-    </div>
-    <label class="f" for="mWhy">Почему ошибся?</label>
-    <select id="mWhy"></select>
-    <label class="f" for="mNote">Заметка для себя</label>
-    <textarea id="mNote" placeholder="например: reduced в вопросе = cut в тексте"></textarea>
-    <div class="row mt"><button class="primary" id="mAdd">Добавить</button></div>
-    <div class="fb" id="mFb" role="status"></div>
-  </div>
-  <div class="block">
-    <h3>Мои слабые места</h3>
-    <div id="mStats"></div>
-  </div>
-  <div class="block">
-    <div class="row" style="justify-content:space-between"><h3 style="margin:0">Все ошибки</h3><button id="mExport">Скопировать текстом</button></div>
-    <div id="mList" class="mt"></div>
-  </div>
-</section>
 </main>
 <script>
 /* ---------- router (first, so tabs work even if something later fails) ---------- */
-const VIEWS=['plan','format','listening','reading','writing','speaking','words','mistakes'];
+const VIEWS=['start','format','listening','reading','writing','speaking'];
 function show(v){
-  if(VIEWS.indexOf(v)<0) v='plan';
+  if(VIEWS.indexOf(v)<0) v='start';
   for(const x of VIEWS){const el=document.getElementById('v-'+x);if(el)el.hidden=(x!==v)}
   document.querySelectorAll('nav.tabs .tab').forEach(t=>{if(t.dataset.v===v)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
   try{window.scrollTo(0,0)}catch(e){}
@@ -454,7 +391,7 @@ document.addEventListener('click',function(e){
   e.preventDefault();
   show(t.dataset.v);
 });
-(function(){let v='plan';try{const h=location.hash.replace('#','');if(VIEWS.indexOf(h)>=0)v=h;else{const sv=JSON.parse(localStorage.getItem('ieltsnb:view')||'"plan"');if(VIEWS.indexOf(sv)>=0)v=sv}}catch(e){}show(v)})();
+(function(){let v='start';try{const h=location.hash.replace('#','');if(VIEWS.indexOf(h)>=0)v=h;else{const sv=JSON.parse(localStorage.getItem('ieltsnb:view')||'"start"');if(VIEWS.indexOf(sv)>=0)v=sv}}catch(e){}show(v)})();
 window.addEventListener('error',function(e){try{const d=document.getElementById('jsErr');if(d){d.hidden=false;d.className="fb bad";d.textContent='Ошибка на странице: '+(e.message||'')+' (строка '+(e.lineno||'?')+'). Отправьте скриншот этого сообщения.'}}catch(_){}} );
 
 /* ---------- stats: counter + anonymous results (Supabase REST, no library) ---------- */
@@ -684,23 +621,14 @@ ${L.traps?H('Ловушки')+`<ul class="tips">${L.traps.map(s=>`<li>${esc(s)}<
 ${L.extra?H(L.extraTitle||'Полезный язык')+L.extra:''}
 ${L.practice?H('Практика')+L.practice.map(()=>'<div class="practice-box"></div>').join(''):''}
 ${L.check?H('Закрепление')+'<p class="small">Короткая проверка: поняли ли вы правило.</p><div class="check"></div>':''}
-<div class="row mt"><button class="mark">${done.has(L.id)?'Пройдено ✓ (снять отметку)':'Отметить как пройдено'}</button></div>
 </div></details>`}).join('');
   lessons.forEach(L=>{
     const d=$('#L-'+L.id);
     let inited=false;
     const init=()=>{if(inited)return;inited=true;
       if(L.practice) $$('.practice-box',d).forEach((box,i)=>renderPractice(box,L.practice[i],L.id+'/p'+(i+1)));
-      if(L.check) mcq($('.check',d),L.check,L.checkInline,(sc,mx)=>report(L.id+'/check',sc,mx));};
+      if(L.check) mcq($('.check',d),L.check,L.checkInline,(sc,mx)=>{report(L.id+'/check',sc,mx);if(!done.has(L.id)){done.add(L.id);S.set('done',[...done]);$('.ld',d).textContent='✓ пройдено';trackEvent('finish')}});};
     d.addEventListener('toggle',()=>{if(d.open)init()});
-    $('.mark',d).onclick=()=>{
-      if(done.has(L.id))done.delete(L.id);else done.add(L.id);
-      S.set('done',[...done]);
-      if(done.has(L.id)) trackEvent('finish');
-      $('.ld',d).textContent=done.has(L.id)?'✓ пройдено':'';
-      $('.mark',d).textContent=done.has(L.id)?'Пройдено ✓ (снять отметку)':'Отметить как пройдено';
-      secProgress();
-    };
   });
 }
 /* =============== DATA: passages =============== */
@@ -1031,51 +959,13 @@ mcq($('#fmtQuiz'),[
   {q:'Matching headings. Вместо “ii” вы переписали текст заголовка.',o:DA,a:1,why:'Пишите номер заголовка.'}
 ],true,(sc,mx)=>report('format/quiz',sc,mx));
 
-/* =============== PLAN =============== */
-const TIPS=['Always read ahead в Listening: следующие вопросы важнее перепроверки.','Reading: не скорость, а контроль. Читайте с целью.','Matching Headings — первым, Matching Information — последним.','Task 1 без overview не получит высокий балл.','Пишите ответы ЗАГЛАВНЫМИ — регистр не будет проблемой.','Разбирайте каждую ошибку: спеллинг, парафраз или пропущенная деталь?','Speaking: Point, Reason, Example, Point.','IELTS — тест на синонимы. Учите слова тематическими группами.','Writing: сначала Task 2, потом Task 1.','Переносите ответы Reading после каждого текста.','Читайте на английском для удовольствия, без таймера.','Думайте на английском пять минут в день.','TRUE / FALSE / NOT GIVEN ≠ YES / NO / NOT GIVEN.','Лимит слов важнее смысла: лишний артикль — 0 баллов.'];
-const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
-$('#dailyTip').textContent=TIPS[doy%TIPS.length];
-
-const ex=$('#examDate');
-ex.value=S.get('exam','');
-function countdown(){
-  const v=ex.value,o=$('#daysLeft');
-  if(!v){o.textContent='Укажите дату экзамена';return}
-  const today=new Date();today.setHours(0,0,0,0);
-  const d=Math.round((new Date(v+'T00:00:00')-today)/864e5);
-  o.textContent=d>1?`Осталось дней: ${d}`:d===1?'Завтра. Выспитесь.':d===0?'День экзамена. Удачи!':'Эта дата прошла';
-}
-ex.onchange=()=>{S.set('exam',ex.value);countdown()};countdown();
-
-const SECN={listening:'Listening',reading:'Reading',writing:'Writing',speaking:'Speaking'};
-function secProgress(){
-  $('#secProg').innerHTML=Object.keys(SECN).map(k=>{const L=ALL[k]||[];const n=L.filter(x=>done.has(x.id)).length;return `<div class="secprog"><button type="button" class="link" data-v="${k}" style="text-align:left;padding:0">${SECN[k]}</button><div class="bar"><i style="width:${L.length?n/L.length*100:0}%"></i></div><span class="small">${n} / ${L.length}</span></div>`}).join('');
-}
-secProgress();
-
+/* =============== START =============== */
 function warm(){
   const pool=[];
   Object.values(ALL).forEach(ls=>ls.forEach(L=>(L.check||[]).forEach(c=>pool.push(Object.assign({},c,{tag:L.title})))));
   mcq($('#warmup'),shuffle(pool).slice(0,5));
 }
 warm();$('#warmNew').onclick=warm;
-
-const DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
-const DEFAULT_TASKS=['Один тип задания: урок + практика','Записать все ошибки','10 новых слов в карточки','Listening: подкаст 20 минут','Writing: Task 1 или Task 2','Speaking: два ответа PREP вслух','Разминка на 5 вопросов'];
-let tasks=S.get('tasksRu',DEFAULT_TASKS),week=S.get('weekRu',{});
-function renderWeek(){
-  let h='<thead><tr><th scope="col">Привычка</th>'+DAYS.map(d=>`<th scope="col">${d}</th>`).join('')+'<th scope="col"><span style="position:absolute;left:-9999px">Удалить</span></th></tr></thead><tbody>';
-  tasks.forEach((t,i)=>{h+=`<tr><td>${esc(t)}</td>`+DAYS.map((d,j)=>`<td><input type="checkbox" data-k="${i}-${j}" aria-label="${esc(t)}, ${d}"${week[i+'-'+j]?' checked':''}></td>`).join('')+`<td><button class="x" data-del="${i}" aria-label="Удалить: ${esc(t)}">×</button></td></tr>`});
-  if(!tasks.length)h+='<tr><td colspan="9" class="small">Список пуст. Добавьте привычку ниже.</td></tr>';
-  $('#week').innerHTML=h+'</tbody>';wprog();
-}
-function wprog(){const total=tasks.length*7;const d=Object.keys(week).filter(k=>week[k]&&+k.split('-')[0]<tasks.length).length;const p=total?Math.round(d/total*100):0;$('#wbar').style.width=p+'%';$('#wtxt').textContent=`Отмечено ${d} из ${total} (${p}%)`}
-$('#week').addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;week[k]=e.target.checked;S.set('weekRu',week);wprog()});
-$('#week').addEventListener('click',e=>{const b=e.target.closest('[data-del]');if(!b)return;const i=+b.dataset.del;tasks.splice(i,1);const nw={};Object.keys(week).forEach(k=>{const[a,d]=k.split('-').map(Number);if(a<i)nw[k]=week[k];else if(a>i)nw[(a-1)+'-'+d]=week[k]});week=nw;S.set('tasksRu',tasks);S.set('weekRu',week);renderWeek()});
-function addTask(){const v=$('#newTask').value.trim();if(!v)return;tasks.push(v);S.set('tasksRu',tasks);$('#newTask').value='';renderWeek()}
-$('#addTask').onclick=addTask;$('#newTask').onkeydown=e=>{if(e.key==='Enter')addTask()};
-$('#resetWeek').onclick=()=>{week={};S.set('weekRu',week);renderWeek()};
-renderWeek();
 
 /* =============== DICTATION =============== */
 const DICT=[
@@ -1119,47 +1009,6 @@ $('#tNext').onclick=()=>{if(ph<PH.length)nextPhase()};
 $('#tReset').onclick=()=>{stopT();ph=0;left=PH[0].m*60;$('#tStart').textContent='Старт';drawT()};
 drawT();
 
-/* =============== WORDS =============== */
-const DECKS={
-  butterflies:[{f:'prey',b:'добыча',s:'an animal hunted by another'},{f:'halt or reverse',b:'остановить или обратить вспять'},{f:'knock-on effect',b:'эффект домино',s:'an indirect result that spreads'},{f:'to some extent',b:'отчасти',s:'partly, to a limited degree'},{f:'well equipped to cope',b:'хорошо готов справиться'},{f:'being dragged along',b:'быть вынужденным следовать',s:'forced to follow a process'},{f:'abundance',b:'изобилие; численность',s:'the total number or quantity'},{f:'subtle',b:'едва заметный, тонкий',s:'not obvious'},{f:'northwards extent',b:'северная граница ареала',s:'the northernmost limit'},{f:'coppiced woodland',b:'лес с порослевой рубкой',s:'trees cut to ground level so they regrow'},{f:'amateur',b:'любитель',s:'not a professional'},{f:'negligible',b:'незначительный',s:'so small it doesn’t matter'},{f:'endangered',b:'под угрозой исчезновения'}],
-  micro:[{f:'harbour',b:'гавань'},{f:'fibres',b:'волокна'},{f:'impair',b:'ухудшать',s:'make weaker or worse'},{f:'fertiliser',b:'удобрение',s:'fertile = плодородный'},{f:'carry out',b:'выполнять, проводить',s:'carry out research'},{f:'nutrient',b:'питательное вещество'},{f:'topsoil',b:'верхний слой почвы'},{f:'thereby',b:'тем самым'},{f:'set out',b:'отправляться; излагать'},{f:'wetlands',b:'водно-болотные угодья'},{f:'inhibit',b:'тормозить, подавлять'},{f:'implications',b:'последствия',s:'possible effects of something'},{f:'decaying',b:'разлагающийся'},{f:'impoverished',b:'обедневший, истощённый',s:'impoverished soil = poor soil'}],
-  map:[{f:'junction / intersection / crossroads',b:'перекрёсток'},{f:'T-junction',b:'Т-образный перекрёсток'},{f:'roundabout',b:'круговое движение'},{f:'clockwise / anticlockwise',b:'по / против часовой стрелки'},{f:'adjacent to',b:'непосредственно рядом'},{f:'farther along',b:'дальше по улице'},{f:'slightly beyond',b:'немного дальше'},{f:'opposite',b:'напротив'},{f:'pedestrian / zebra crossing',b:'пешеходный переход'},{f:'lead off to',b:'вести к, ответвляться к'},{f:'run parallel to',b:'идти параллельно'}],
-  trends:[{f:'rise / increase / climb',b:'расти'},{f:'fall / decline / drop',b:'снижаться'},{f:'fluctuate',b:'колебаться'},{f:'level off',b:'выровняться, стабилизироваться'},{f:'peak at',b:'достичь пика на уровне'},{f:'dramatically / sharply',b:'резко'},{f:'gradually / steadily',b:'постепенно / стабильно'},{f:'slightly',b:'незначительно'},{f:'respectively',b:'соответственно'},{f:'as opposed to',b:'в отличие от'},{f:'just under half',b:'чуть меньше половины'},{f:'expenditure',b:'расходы'},{f:'revenue',b:'выручка, доход'}],
-  linkers:[{f:'Furthermore',b:'Более того',s:'add a point'},{f:'However',b:'Однако',s:'contrast'},{f:'Whereas',b:'тогда как',s:'contrast in one sentence'},{f:'For instance',b:'Например'},{f:'As a result',b:'В результате'},{f:'Thereby',b:'тем самым'},{f:'In my view',b:'По моему мнению'},{f:'To some extent',b:'В некоторой степени'},{f:'In conclusion',b:'В заключение'}]
-};
-const ds=$('#deckSel');ds.value=S.get('deck','butterflies');if(!DECKS[ds.value])ds.value='butterflies';
-const showDeck=()=>{S.set('deck',ds.value);deck($('#wordDeck'),DECKS[ds.value],ds.value)};
-ds.onchange=showDeck;showDeck();
-
-/* =============== MISTAKES =============== */
-const R={spelling:{l:'Спеллинг',tip:'Ведите список слов, в которых ошибаетесь, и делайте 5-минутный диктант каждый день. Пишите ответы заглавными.'},
-  para:{l:'Не узнал парафраз',tip:'После каждого теста выписывайте пары «слово из вопроса — слово из текста». Это ваш банк синонимов.'},
-  detail:{l:'Пропустил деталь',tip:'Читайте вперёд и предсказывайте тип ответа до того, как запись или текст до него дойдут.'},
-  trap:{l:'Попался на дистрактор',tip:'Слушайте до конца фразы. Дословно повторённое слово — часто ловушка.'},
-  time:{l:'Не хватило времени',tip:'Работайте с таймером 12 / 18 / 23 / 7 и не тратьте больше минуты на один вопрос.'},
-  limit:{l:'Лимит слов или грамматика',tip:'Обводите инструкцию (ONE WORD ONLY) и перечитывайте предложение с ответом.'},
-  tfng:{l:'Перепутал FALSE и NOT GIVEN',tip:'FALSE — текст явно противоречит. NOT GIVEN — проверить по тексту невозможно.'},
-  other:{l:'Другое',tip:'Запишите, почему выбрали неверный ответ. Назвать проблему — половина решения.'}};
-$('#mWhy').innerHTML=Object.entries(R).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
-let log=S.get('log',[]);
-function renderLog(){
-  const list=$('#mList');
-  list.innerHTML=log.length?log.map(m=>`<div class="log-item"><div><span class="tag">${esc(m.sec)}</span><span class="tag">${esc(R[m.why]?R[m.why].l:m.why)}</span><span class="small">${esc(m.date)}</span><div style="margin-top:.3rem">${m.type?`<b>${esc(m.type)}.</b> `:''}${m.mine?`Мой ответ: “${esc(m.mine)}”`:''}${m.right?`${m.mine?', ':''}правильно: “${esc(m.right)}”`:''}</div>${m.note?`<div class="small">${esc(m.note)}</div>`:''}</div><button class="x" data-id="${m.id}" aria-label="Удалить">×</button></div>`).join(''):'<p class="small">Пока пусто. После следующего теста добавьте сюда каждый неверный ответ.</p>';
-  const c={};log.forEach(m=>c[m.why]=(c[m.why]||0)+1);
-  const st=$('#mStats');
-  if(!log.length){st.innerHTML='<p class="small">Здесь появятся ваши самые частые проблемы и совет, над чем работать.</p>';return}
-  const max=Math.max(...Object.values(c));const s=Object.entries(c).sort((a,b)=>b[1]-a[1]);
-  st.innerHTML=s.map(([k,n])=>`<div class="stat"><span>${esc(R[k]?R[k].l:k)}</span><div class="bar"><i style="width:${n/max*100}%"></i></div><b>${n}</b></div>`).join('')+`<div class="tipbox"><b>Работать дальше над: ${esc(R[s[0][0]].l)}.</b> ${esc(R[s[0][0]].tip)}</div>`;
-}
-$('#mAdd').onclick=()=>{const m={id:Date.now(),date:new Date().toLocaleDateString('ru-RU'),sec:$('#mSec').value,type:$('#mType').value.trim(),mine:$('#mMine').value.trim(),right:$('#mRight').value.trim(),why:$('#mWhy').value,note:$('#mNote').value.trim()};
-  if(!m.type&&!m.mine&&!m.right&&!m.note){fb($('#mFb'),false,'Заполните хотя бы тип задания или ответы.');return}
-  log.unshift(m);S.set('log',log);['mType','mMine','mRight','mNote'].forEach(id=>$('#'+id).value='');fb($('#mFb'),true,'Добавлено.');renderLog()};
-$('#mList').onclick=e=>{const b=e.target.closest('[data-id]');if(!b)return;log=log.filter(m=>String(m.id)!==b.dataset.id);S.set('log',log);renderLog()};
-$('#mExport').onclick=async()=>{const txt=log.map(m=>`${m.date} | ${m.sec} | ${m.type} | мой: ${m.mine} | правильно: ${m.right} | ${R[m.why]?R[m.why].l:m.why}${m.note?' | '+m.note:''}`).join('\n')||'Ошибок пока нет.';
-  try{await navigator.clipboard.writeText(txt);$('#mExport').textContent='Скопировано'}catch(e){$('#mExport').textContent='Не удалось скопировать'}
-  setTimeout(()=>$('#mExport').textContent='Скопировать текстом',1800)};
-renderLog();
-
 /* =============== ROUTER =============== */
 
 /* =============== NAME + VIEW EVENT =============== */
@@ -1170,6 +1019,7 @@ renderLog();
     return;
   }
   const inp=$('#myName'),msg=$('#nameMsg');
+  if(!inp){trackEvent('view');return}
   try{inp.value=localStorage.getItem('ieltsnb:name')||''}catch(e){}
   $('#saveName').onclick=()=>{const v=inp.value.trim().slice(0,60);try{if(v)localStorage.setItem('ieltsnb:name',v);else localStorage.removeItem('ieltsnb:name')}catch(e){}msg.textContent=v?'Сохранено. Следующие результаты уйдут с этим именем.':'Имя удалено. Результаты будут анонимными.'};
   $('#statsNote').textContent=STATS_ON?'Результаты заданий отправляются автору: анонимно или с вашим именем.':'Статистика не подключена: результаты хранятся только в этом браузере.';
