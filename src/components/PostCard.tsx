@@ -1,54 +1,64 @@
 import Link from 'next/link';
 import { publicUrl } from '@/lib/supabase';
-import { fmtDate, fmtDateTime } from '@/lib/format';
-import { typeLabel, type PostCardData, type PostStats } from '@/lib/types';
+import { fmtDateTime } from '@/lib/format';
+import { contentChips, initials, typeLabel, type PostCardData, type PostStats } from '@/lib/types';
+import { EyeIcon } from './Icons';
 
-export function PostMeta({ post }: { post: PostCardData }) {
+export function TypeLine({ post }: { post: PostCardData }) {
   const isEvent = post.type === 'event' && post.event_date;
   const past = isEvent && new Date(post.event_date!).getTime() < Date.now();
   return (
-    <div className="meta">
-      <span className={`badge${past ? ' past' : ''}`}>
-        {typeLabel(post.type)}
-        {isEvent ? (past ? ' · прошло' : ' · скоро') : ''}
-      </span>
-      {isEvent ? <span>{fmtDateTime(post.event_date)}</span> : <span>{fmtDate(post.published_at)}</span>}
-      {post.author && <span>{post.author.name}</span>}
+    <div className="type-line">
+      {typeLabel(post.type)}
+      {isEvent ? ` · ${past ? 'прошло' : 'скоро'} · ${fmtDateTime(post.event_date)}` : ''}
     </div>
   );
 }
 
 export function PostCard({ post, stats }: { post: PostCardData; stats?: PostStats }) {
   const cover = publicUrl(post.cover_path);
+  const href = `/p/${post.slug}`;
   return (
-    <Link href={`/p/${post.slug}`} className="card">
-      <div>
-        <PostMeta post={post} />
-        <h2>{post.title}</h2>
-        {post.excerpt && <p>{post.excerpt}</p>}
-        {post.tags.length > 0 && (
-          <div className="tags">
-            {post.tags.map((t) => (
-              <span key={t.slug} className="tag">
-                {t.name}
-              </span>
-            ))}
-          </div>
+    <article className="card">
+      <Link href={href} className="card-cover" tabIndex={-1} aria-hidden="true">
+        {cover ? (
+          <img src={cover} alt="" loading="lazy" />
+        ) : (
+          <span className="ph">
+            <span className="logo-mark" style={{ width: 22, height: 22, boxShadow: '9px 9px 0 var(--saffron)' }} />
+            {typeLabel(post.type)}
+          </span>
         )}
-        {stats && stats.visitors > 0 && (
-          <div className="meta stat">
-            <span>
-              Посетителей: <b>{stats.visitors}</b>
-            </span>
-            {stats.finished > 0 && (
-              <span>
-                прошли урок: <b>{stats.finished}</b>
+      </Link>
+      <div className="card-body">
+        <TypeLine post={post} />
+        <h2>
+          <Link href={href}>{post.title}</Link>
+        </h2>
+        {post.excerpt && <p className="desc">{post.excerpt}</p>}
+        <div className="chips">
+          {contentChips(post.kinds).map((c) => (
+            <span key={c}>{c}</span>
+          ))}
+        </div>
+        <div className="byline">
+          {post.author && (
+            <>
+              <span className="avatar" aria-hidden="true">
+                {initials(post.author.name)}
               </span>
-            )}
-          </div>
-        )}
+              <span style={{ fontWeight: 600 }}>{post.author.name}</span>
+            </>
+          )}
+          <span className="views" title="Просмотры">
+            <EyeIcon label="Просмотры" />
+            {stats?.visitors ?? 0}
+          </span>
+        </div>
+        <Link href={href} className="btn dark">
+          Открыть материал →
+        </Link>
       </div>
-      {cover && <img className="cover" src={cover} alt="" loading="lazy" />}
-    </Link>
+    </article>
   );
 }

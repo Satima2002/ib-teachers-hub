@@ -24,7 +24,28 @@ export type PostCardData = {
   event_date: string | null;
   author: { name: string } | null;
   tags: Tag[];
+  /** какие вложения есть у поста: для ярлыков «презентация», «тренажёр» */
+  kinds: AssetKind[];
 };
+
+export function initials(name: string | null | undefined): string {
+  if (!name) return '?';
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]!.toUpperCase())
+    .join('');
+}
+
+/** Ярлыки «текст · презентация · тренажёр» */
+export function contentChips(kinds: AssetKind[]): string[] {
+  const out = ['текст'];
+  if (kinds.includes('presentation_pdf') || kinds.includes('pptx')) out.push('презентация');
+  if (kinds.includes('trainer')) out.push('тренажёр');
+  if (kinds.includes('file')) out.push('файлы');
+  return out;
+}
 
 export type AssetKind = 'presentation_pdf' | 'pptx' | 'file' | 'image' | 'trainer';
 

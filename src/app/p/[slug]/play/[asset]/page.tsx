@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { SiteHeader } from '@/components/SiteHeader';
 import { TrainerEmbed } from '@/components/TrainerEmbed';
 import { ViewTracker } from '@/components/ViewTracker';
 import { getPost } from '@/lib/posts';
@@ -24,12 +25,15 @@ export default async function PlayPage({ params }: Props) {
   if (!post || !a || !a.url) notFound();
 
   return (
-    <main style={{ maxWidth: 1100, margin: '0 auto' }}>
+    <>
+      <SiteHeader active={null} />
       <ViewTracker postId={post.id} />
-      <div className="meta" style={{ padding: '0.6rem 1rem' }}>
-        <Link href={`/p/${post.slug}`}>← {post.title}</Link>
-      </div>
-      <TrainerEmbed postId={post.id} assetId={a.id} url={a.url} title={a.title} bare />
-    </main>
+      <main style={{ maxWidth: 1100, margin: '0 auto', padding: '12px 16px 24px' }}>
+        <Link href={`/p/${post.slug}`} className="back">
+          ← {post.title}
+        </Link>
+        <TrainerEmbed postId={post.id} assetId={a.id} url={a.url} title={a.title} bare />
+      </main>
+    </>
   );
 }

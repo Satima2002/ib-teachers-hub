@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type Props = { url: string; title: string; downloadUrl?: string | null };
+type Props = { url: string; title: string; downloadUrl?: string | null; anchorId?: string };
 
 /**
  * Презентация из PDF: листаемые слайды (pdf.js). Работает везде, включая iPhone.
  * Если что-то пошло не так — показываем ссылку на PDF.
  */
-export function PdfSlides({ url, title, downloadUrl }: Props) {
+export function PdfSlides({ url, title, downloadUrl, anchorId }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const docRef = useRef<any>(null);
   const renderRef = useRef<any>(null);
@@ -78,15 +78,16 @@ export function PdfSlides({ url, title, downloadUrl }: Props) {
   const next = () => setPage((p) => Math.min(pages, p + 1));
 
   return (
-    <section className="block" aria-label={title}>
+    <section className="block" id={anchorId} aria-label={title}>
       <div className="block-head">
+        <span className="badge">Презентация</span>
         <b>{title}</b>
-        <span style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-          <a className="btn" href={url} target="_blank" rel="noopener noreferrer">
+        <span style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginLeft: 'auto' }}>
+          <a className="btn sm" href={url} target="_blank" rel="noopener noreferrer">
             Открыть PDF
           </a>
           {downloadUrl && (
-            <a className="btn" href={downloadUrl} download>
+            <a className="btn sm" href={downloadUrl} download>
               Скачать .pptx
             </a>
           )}
@@ -112,14 +113,14 @@ export function PdfSlides({ url, title, downloadUrl }: Props) {
         )}
         <canvas ref={canvasRef} hidden={state !== 'ready'} aria-label={`Слайд ${page} из ${pages}`} />
         {state === 'ready' && (
-          <div className="nav">
+          <div className="nav-row">
             <button className="btn" onClick={prev} disabled={page <= 1}>
               ← Назад
             </button>
             <span className="muted small">
               {page} / {pages}
             </span>
-            <button className="btn primary" onClick={next} disabled={page >= pages}>
+            <button className="btn dark" onClick={next} disabled={page >= pages}>
               Дальше →
             </button>
           </div>

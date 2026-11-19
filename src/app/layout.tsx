@@ -1,18 +1,18 @@
 import type { Metadata, Viewport } from 'next';
-import Link from 'next/link';
-import { Golos_Text, Caveat } from 'next/font/google';
+import { Onest, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
-// Golos Text создан для кириллицы и хорошо читается; Caveat — «рукописные» заголовки.
-const body = Golos_Text({
+// Onest — текст, Playfair Display — заголовки и логотип. Оба с кириллицей.
+const body = Onest({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600', '700'], variable: '--font-body', display: 'swap' });
+const serif = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '700'],
-  variable: '--font-body',
+  weight: ['600'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
   display: 'swap',
 });
-const hand = Caveat({ subsets: ['latin', 'cyrillic'], weight: ['700'], variable: '--font-hand', display: 'swap' });
 
-const SITE = process.env.NEXT_PUBLIC_SITE_NAME || 'Материалы для учителей';
+const SITE = process.env.NEXT_PUBLIC_SITE_NAME || 'teachers hub';
 
 export const metadata: Metadata = {
   title: { default: SITE, template: `%s · ${SITE}` },
@@ -23,19 +23,13 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  themeColor: '#0c2a25',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${body.variable} ${hand.variable}`}>
+    <html lang="ru" className={`${body.variable} ${serif.variable}`}>
       <body>
-        <header className="site-header">
-          <div className="in">
-            <Link href="/" className="brand">
-              {SITE}
-            </Link>
-          </div>
-        </header>
         {children}
         <footer className="site-footer">Материалы публикуют учителя. Результаты тренажёров видит только автор.</footer>
       </body>

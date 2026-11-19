@@ -12,6 +12,7 @@ type Props = {
   fullscreenHref?: string;
   /** на странице «на весь экран» — без рамки и поля имени сверху */
   bare?: boolean;
+  anchorId?: string;
 };
 
 const NAME_KEY = 'hub:name';
@@ -24,7 +25,7 @@ const MAX_H = 20000;
  * он присылает сообщения (протокол v1, см. docs/trainer-protocol.md),
  * а эта страница проверяет их и записывает в Supabase.
  */
-export function TrainerEmbed({ postId, assetId, url, title, fullscreenHref, bare }: Props) {
+export function TrainerEmbed({ postId, assetId, url, title, fullscreenHref, bare, anchorId }: Props) {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const [height, setHeight] = useState<number | null>(null);
   const [name, setName] = useState('');
@@ -132,7 +133,7 @@ export function TrainerEmbed({ postId, assetId, url, title, fullscreenHref, bare
         onChange={(e) => setName(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && saveName()}
       />
-      <button className="btn" onClick={saveName}>
+      <button className="btn sm" onClick={saveName}>
         {saved ? 'Сохранено ✓' : 'Сохранить'}
       </button>
     </div>
@@ -148,12 +149,13 @@ export function TrainerEmbed({ postId, assetId, url, title, fullscreenHref, bare
   }
 
   return (
-    <section className="block" aria-label={title}>
+    <section className="block" id={anchorId} aria-label={title}>
       <div className="block-head">
+        <span className="badge">Тренажёр</span>
         <b>{title}</b>
         {fullscreenHref && (
-          <a className="btn" href={fullscreenHref}>
-            ⛶ На весь экран
+          <a className="btn sm" href={fullscreenHref} style={{ marginLeft: 'auto' }}>
+            На весь экран
           </a>
         )}
       </div>

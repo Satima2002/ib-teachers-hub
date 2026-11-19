@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { PostCard } from '@/components/PostCard';
-import { getStats, getTagFeed } from '@/lib/posts';
+import { EmptyState, IntroBand, PostList, TopicList } from '@/components/Feed';
+import { SiteHeader } from '@/components/SiteHeader';
+import { getFeed, getStats, getTagFeed, topicCounts } from '@/lib/posts';
 
 export const revalidate = 60;
 
@@ -11,26 +11,35 @@ type Props = { params: Promise<{ tag: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tag } = await params;
   const { tag: t } = await getTagFeed(tag);
-  return { title: t ? `#${t.name}` : 'Не найдено' };
+  return { title: t ? `# ${t.name}` : tag === 'ai' ? 'ИИ' : 'Тема' };
 }
 
 export default async function TagPage({ params }: Props) {
   const { tag } = await params;
-  const [{ tag: t, posts }, stats] = await Promise.all([getTagFeed(tag), getStats()]);
-  if (!t) notFound();
+  const [{ tag: t, posts }, all, stats] = await Promise.all([getTagFeed(tag), getFeed(), getStats()]);
+  const label = t ? t.name : tag === 'ai' ? 'ИИ' : tag;
 
   return (
-    <main className="wrap">
-      <p className="meta">
-        <Link href="/">← Все материалы</Link>
-      </p>
-      <h1 className="title-hl">{t.name}</h1>
-      <p className="lead">Материалов с этим тегом: {posts.length}</p>
-      <div className="feed">
-        {posts.map((p) => (
-          <PostCard key={p.id} post={p} stats={stats[p.id]} />
-        ))}
+    <>
+      <SiteHeader active={tag === 'ai' ? 'ai' : null} />
+      <IntroBand />
+      <div className="page">
+        <TopicList topics={topicCounts(all)} active={tag} />
+        <main className="main">
+          {tag !== 'ai' && (
+            <div className="filter">
+              <span className="muted">Тема:</span>
+              <span className="chip-dark">
+                # {label}
+                <Link href="/" aria-label="Сбросить тему">
+                  ×
+                </Link>
+              </span>
+            </div>
+          )}
+          {posts.length === 0 ? <EmptyState label={label} /> : <PostList posts={posts} stats={stats} />}
+        </main>
       </div>
-    </main>
+    </>
   );
 }

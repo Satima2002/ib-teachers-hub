@@ -1,13 +1,23 @@
 import Link from 'next/link';
+import { BoxIcon } from '@/components/Icons';
+import { SiteHeader } from '@/components/SiteHeader';
 
 export default function NotFound() {
   return (
-    <main className="wrap">
-      <h1 className="title-hl">Не найдено</h1>
-      <p className="lead">Такого материала нет, или он ещё не опубликован.</p>
-      <Link className="btn primary" href="/">
-        Все материалы
-      </Link>
-    </main>
+    <>
+      <SiteHeader active={null} />
+      <div className="page" style={{ display: 'block', maxWidth: 720 }}>
+        <div className="empty">
+          <span className="ic">
+            <BoxIcon />
+          </span>
+          <h2>Такого материала нет</h2>
+          <p>Возможно, ссылка устарела или материал ещё не опубликован.</p>
+          <Link className="btn dark" href="/">
+            Все материалы
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

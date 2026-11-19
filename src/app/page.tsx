@@ -1,31 +1,35 @@
-import { FeedTabs } from '@/components/FeedTabs';
-import { PostCard } from '@/components/PostCard';
-import { getFeed, getStats } from '@/lib/posts';
-import { POST_TYPES, type PostType } from '@/lib/types';
+import { EmptyState, IntroBand, PostList, TopicList } from '@/components/Feed';
+import { NAV_LABEL, SiteHeader, type NavKey } from '@/components/SiteHeader';
+import { getFeed, getStats, topicCounts } from '@/lib/posts';
+import type { PostType } from '@/lib/types';
 
 export const revalidate = 60; // лента обновляется раз в минуту
+
+const TYPES: PostType[] = ['seminar', 'article', 'trainer', 'event'];
 
 type Props = { searchParams: Promise<{ type?: string }> };
 
 export default async function Home({ searchParams }: Props) {
   const { type } = await searchParams;
-  const active = POST_TYPES.some((t) => t.value === type) ? (type as PostType) : undefined;
-  const [posts, stats] = await Promise.all([getFeed({ type: active }), getStats()]);
+  const active = TYPES.includes(type as PostType) ? (type as PostType) : undefined;
+  const [all, stats] = await Promise.all([getFeed(), getStats()]);
+  const posts = active ? all.filter((p) => p.type === active) : all;
+  const navKey: NavKey = active && active !== 'event' ? active : 'all';
 
   return (
-    <main className="wrap">
-      <h1 className="title-hl">Материалы для учителей</h1>
-      <p className="lead">Семинары, статьи и тренажёры. Каждый материал: объяснение, практика и закрепление.</p>
-      <FeedTabs active={active} />
-      {posts.length === 0 ? (
-        <p className="empty">Здесь пока пусто. Скоро появятся первые материалы.</p>
-      ) : (
-        <div className="feed">
-          {posts.map((p) => (
-            <PostCard key={p.id} post={p} stats={stats[p.id]} />
-          ))}
-        </div>
-      )}
-    </main>
+    <>
+      <SiteHeader active={navKey} />
+      <IntroBand />
+      <div className="page">
+        <TopicList topics={topicCounts(all)} />
+        <main className="main">
+          {posts.length === 0 ? (
+            <EmptyState label={active === 'event' ? 'События' : NAV_LABEL[navKey]} />
+          ) : (
+            <PostList posts={posts} stats={stats} />
+          )}
+        </main>
+      </div>
+    </>
   );
 }

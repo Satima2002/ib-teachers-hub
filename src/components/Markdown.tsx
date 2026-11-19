@@ -1,5 +1,14 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { headingId } from '@/lib/content';
+
+function textOf(node: React.ReactNode): string {
+  if (node == null || typeof node === 'boolean') return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(textOf).join('');
+  if (typeof node === 'object' && 'props' in (node as any)) return textOf((node as any).props.children);
+  return '';
+}
 
 /**
  * Markdown без «сырого» HTML: react-markdown по умолчанию его не выполняет,
@@ -11,6 +20,7 @@ export function Markdown({ text }: { text: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          h2: ({ children }) => <h2 id={headingId(textOf(children))}>{children}</h2>,
           a: ({ href, children }) => {
             const external = !!href && /^https?:\/\//.test(href);
             return (

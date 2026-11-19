@@ -30,6 +30,32 @@ export function splitContent(md: string): Segment[] {
   return out;
 }
 
+/** id для заголовка: одинаковый в тексте и в оглавлении */
+export function headingId(text: string): string {
+  return (
+    'h-' +
+    text
+      .toLowerCase()
+      .replace(/[*_`[\]()#]/g, '')
+      .trim()
+      .replace(/[^\p{L}\p{N}]+/gu, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60)
+  );
+}
+
+/** Оглавление: заголовки «## …» из текста */
+export function tableOfContents(md: string): { id: string; title: string }[] {
+  return md
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .filter((l) => /^##\s+/.test(l))
+    .map((l) => {
+      const title = l.replace(/^##\s+/, '').replace(/[*_`]/g, '').trim();
+      return { id: headingId(title), title };
+    });
+}
+
 /** Примерное время чтения (200 слов в минуту) */
 export function readingMinutes(md: string): number {
   const words = md.replace(/::\w+\[[^\]]*\]/g, '').split(/\s+/).filter(Boolean).length;

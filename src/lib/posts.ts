@@ -2,7 +2,7 @@ import { db } from './supabase';
 import type { Asset, PostCardData, PostFull, PostStats, PostType, Tag } from './types';
 
 const CARD_FIELDS =
-  'id, slug, type, title, excerpt, cover_path, published_at, event_date, author:profiles(name), post_tags(tags(slug, name))';
+  'id, slug, type, title, excerpt, cover_path, published_at, event_date, author:profiles(name), post_tags(tags(slug, name)), kinds:assets(kind)';
 
 type Row = Record<string, any>;
 
@@ -23,7 +23,20 @@ function toCard(r: Row): PostCardData {
     event_date: r.event_date,
     author: author ? { name: author.name } : null,
     tags,
+    kinds: Array.from(new Set(((r.kinds ?? []) as Row[]).map((k) => k.kind))),
   };
+}
+
+/** Темы с числом материалов — по списку публичных постов */
+export function topicCounts(posts: PostCardData[]): (Tag & { count: number })[] {
+  const map = new Map<string, Tag & { count: number }>();
+  for (const p of posts)
+    for (const t of p.tags) {
+      const cur = map.get(t.slug) ?? { ...t, count: 0 };
+      cur.count += 1;
+      map.set(t.slug, cur);
+    }
+  return [...map.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'ru'));
 }
 
 /** Лента: только публичные опубликованные посты (не «по ссылке») */
@@ -51,7 +64,7 @@ export async function getPost(slug: string): Promise<PostFull | null> {
     .maybeSingle();
   if (error) throw new Error(error.message);
   if (!data) return null;
-  const assets: Asset[] = ((data as Row).assets ?? []).sort((a: Asset, b: Asset) => a.position - b.position);
+  const assets: Asset[] = [...((data as Row).assets ?? [])].sort((a: Asset, b: Asset) => a.position - b.position);
   return { ...toCard(data as Row), content_md: (data as Row).content_md ?? '', assets };
 }
 
