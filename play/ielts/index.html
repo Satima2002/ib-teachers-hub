@@ -1,0 +1,1179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IELTS notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#FAFAF6; --card:#FFFFFF; --ink:#1E2230; --soft:#5B6172; --rule:#DADDE4; --dot:#D2D5DC;
+  --hl:#DDEA5C; --hl-bg:#E8F28A; --hl-ink:#1E2230;
+  --ok:#2A7148; --ok-bg:#E2F1E7; --bad:#A8352B; --bad-bg:#F8E2DF; --warn-bg:#FFF3D6; --focus:#3557C9;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#18191D; --card:#212329; --ink:#ECEBE4; --soft:#A6AAB5; --rule:#353843; --dot:#2B2E36;
+    --hl:#C8D84A; --hl-bg:rgba(200,216,74,.30); --hl-ink:#16180E;
+    --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EA6FF;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#18191D; --card:#212329; --ink:#ECEBE4; --soft:#A6AAB5; --rule:#353843; --dot:#2B2E36;
+  --hl:#C8D84A; --hl-bg:rgba(200,216,74,.30); --hl-ink:#16180E;
+  --ok:#86D2A2; --ok-bg:#1E3328; --bad:#F2958A; --bad-bg:#3B2220; --warn-bg:#3A3220; --focus:#8EA6FF;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(var(--dot) 1.1px,transparent 1.5px);background-size:22px 22px;font:17px/1.55 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:880px;margin:0 auto;padding:.6rem 1rem .5rem}
+.brand{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap}
+.brand h1{font-family:Caveat,"Segoe Print","Comic Sans MS",cursive;font-weight:700;font-size:2.2rem;line-height:1;margin:0}
+.brand p{margin:0;color:var(--soft);font-size:.92rem}
+a.home-link{font-size:.9rem;color:var(--soft)}
+nav.tabs{display:flex;gap:.3rem;overflow-x:auto;padding:.5rem 0 .1rem;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs .tab{flex:none;font:inherit;background:none;min-height:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:.4rem .85rem;border-radius:999px;color:var(--soft);text-decoration:none;border:1px solid transparent}
+nav.tabs .tab:hover{border-color:var(--rule);color:var(--ink)}
+nav.tabs .tab[aria-current="page"]{background:var(--hl);color:var(--hl-ink);font-weight:700}
+main{max-width:880px;margin:0 auto;padding:1.25rem 1rem 4rem}
+h2.title{font-family:Caveat,"Segoe Print","Comic Sans MS",cursive;font-weight:700;font-size:clamp(2.5rem,7vw,3.4rem);line-height:1;margin:.4rem 0 .3rem;display:inline-block;padding:0 .2em;background:linear-gradient(transparent 52%,var(--hl-bg) 52%,var(--hl-bg) 90%,transparent 90%)}
+.lead{color:var(--soft);margin:.2rem 0 1.3rem;max-width:64ch}
+.block{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:1.1rem 1.2rem;margin:0 0 1.1rem}
+.block h3{font-size:1.12rem;margin:0 0 .3rem}
+.how{color:var(--soft);margin:0 0 .9rem;font-size:.95rem;max-width:66ch}
+.small{font-size:.9rem;color:var(--soft)}
+mark{background:var(--hl-bg);color:inherit;padding:0 .15em;border-radius:2px}
+ul.tips,ol.steps{margin:0;padding-left:1.2rem}
+ul.tips li,ol.steps li{margin:.32rem 0}
+.mt{margin-top:.75rem}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem}
+button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:8px;padding:.45rem .9rem;cursor:pointer;min-height:42px}
+button:hover{background:var(--paper)}
+button.primary{background:var(--hl);border-color:var(--hl);color:var(--hl-ink);font-weight:700}
+button.primary:hover{filter:brightness(.96)}
+button.link{border:none;text-decoration:underline;padding:.3rem .4rem;min-height:auto;color:var(--soft);background:none}
+button:disabled{opacity:.45;cursor:default}
+:is(button,a,input,select,textarea,summary,.card):focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:.5rem .65rem;width:100%}
+textarea{min-height:64px;resize:vertical}
+label.f{display:block;font-weight:700;font-size:.92rem;margin:.6rem 0 .25rem}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.row>input,.row>select{flex:1 1 180px;width:auto}
+.fb{display:none;margin-top:.55rem;padding:.55rem .75rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:block;background:var(--ok-bg);color:var(--ok)}
+.fb.bad{display:block;background:var(--bad-bg);color:var(--bad)}
+.q{padding:.6rem 0;border-top:1px dashed var(--rule)}
+.q:first-child{border-top:none;padding-top:0}
+.qq{margin:.2rem 0 .4rem}
+.opt{display:block;width:100%;text-align:left;margin:.35rem 0;border-color:var(--rule);background:var(--paper)}
+.opts.inline{display:flex;flex-wrap:wrap;gap:.4rem}
+.opts.inline .opt{width:auto;margin:0}
+.opt.right{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:700}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.quote{border-left:3px solid var(--hl);padding:.35rem .8rem;margin:.4rem 0;font-style:italic}
+.score{font-weight:700;margin:.6rem 0 0}
+.scroll{overflow-x:auto}
+table.week{border-collapse:collapse;width:100%;min-width:520px}
+table.week th,table.week td{border-bottom:1px solid var(--rule);padding:.45rem .3rem;text-align:center}
+table.week th{font-size:.85rem;color:var(--soft);font-weight:700}
+table.week td:first-child,table.week th:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;min-width:8.5rem;max-width:11rem;font-size:.92rem;padding-right:.6rem}
+input[type="checkbox"]{width:22px;height:22px;accent-color:var(--ok);cursor:pointer}
+button.x{border:none;min-height:auto;padding:.2rem .5rem;color:var(--soft);font-size:1.2rem;background:none}
+.bar{height:10px;background:var(--rule);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:var(--hl);transition:width .35s}
+.big{font-family:Caveat,"Segoe Print",cursive;font-size:2rem;line-height:1.1;margin:.2rem 0}
+.clock{font-size:clamp(3.2rem,13vw,5rem);font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.phases{display:flex;gap:4px;margin:.8rem 0}
+.phases div{border-radius:6px;padding:.35rem .45rem;font-size:.8rem;background:var(--rule);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.phases div.on{background:var(--hl);color:var(--hl-ink);font-weight:700}
+.phases div.done{opacity:.55;text-decoration:line-through}
+.card{min-height:190px;display:grid;place-items:center;text-align:center;border:1.5px dashed var(--soft);border-radius:12px;padding:1.2rem;cursor:pointer;background:var(--paper);user-select:none}
+.card .term{font-family:Caveat,"Segoe Print",cursive;font-size:2.3rem;line-height:1.1}
+.card .mean{font-size:1.2rem;font-weight:700}
+.pool .opt{margin:.35rem 0}
+ol.seq{margin:.6rem 0;padding-left:1.4rem;min-height:1rem}
+ol.seq li{margin:.3rem 0;padding:.3rem .5rem;background:var(--hl-bg);border-radius:6px}
+.match-row{display:grid;grid-template-columns:1fr minmax(170px,.95fr);gap:.6rem;align-items:center;padding:.45rem 0;border-top:1px dashed var(--rule)}
+.match-row:first-child{border-top:none}
+.match-row .mark{font-size:.85rem;font-weight:700}
+.match-row.okr .mark{color:var(--ok)} .match-row.badr .mark{color:var(--bad)}
+@media (max-width:560px){.match-row{grid-template-columns:1fr}}
+.prep-box{border-left:4px solid var(--hl);padding-left:.75rem;margin:.6rem 0}
+.prep-box b{display:block}
+.log-item{border-top:1px dashed var(--rule);padding:.6rem 0;display:grid;grid-template-columns:1fr auto;gap:.5rem}
+.log-item:first-child{border-top:none}
+.tag{display:inline-block;font-size:.8rem;padding:.05rem .5rem;border-radius:99px;border:1px solid var(--rule);margin-right:.3rem}
+.stat{display:grid;grid-template-columns:minmax(120px,190px) 1fr 2rem;gap:.6rem;align-items:center;margin:.35rem 0;font-size:.92rem}
+.tipbox{background:var(--hl-bg);border-radius:10px;padding:.7rem .9rem;margin-top:.8rem}
+.linker{display:grid;grid-template-columns:auto 1fr;gap:.3rem .9rem}
+.linker b{font-family:Caveat,"Segoe Print",cursive;font-size:1.35rem;line-height:1.2}
+/* lessons */
+details.lesson{background:var(--card);border:1px solid var(--rule);border-radius:12px;margin:0 0 .7rem}
+details.lesson>summary{list-style:none;cursor:pointer;padding:.85rem 1.1rem;display:grid;grid-template-columns:1rem 1.5rem 1fr auto;gap:.5rem;align-items:center}
+details.lesson>summary::-webkit-details-marker{display:none}
+details.lesson>summary::before{content:"+";font-weight:700;font-size:1.3rem;color:var(--soft);text-align:center}
+details.lesson[open]>summary::before{content:"−"}
+details.lesson[open]>summary{border-bottom:1px solid var(--rule)}
+.lt{font-weight:700}
+.lm{display:block;font-weight:400;font-size:.85rem;color:var(--soft)}
+.ld{font-size:.85rem;font-weight:700;color:var(--ok);white-space:nowrap}
+.lb{padding:.6rem 1.2rem 1.1rem}
+.lb h4{margin:1.1rem 0 .35rem;font-size:1rem;display:flex;gap:.5rem;align-items:center}
+.lb h4 .n{display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--hl);color:var(--hl-ink);font-size:.8rem}
+.order{border-radius:8px;padding:.5rem .75rem;margin:.6rem 0;background:var(--paper);border:1px solid var(--rule)}
+.order.in b{color:var(--ok)} .order.not b{color:var(--bad)} .order.mixed b{color:var(--soft)}
+.practice-box{border:1.5px dashed var(--rule);border-radius:10px;padding:.8rem .9rem;margin:.6rem 0}
+.instr{font-weight:700;font-size:.95rem;margin:0 0 .6rem}
+details.pass{background:var(--paper);border-radius:8px;padding:.5rem .8rem;margin:.4rem 0 .8rem;border:1px solid var(--rule)}
+details.pass summary{cursor:pointer;font-weight:700}
+details.pass p{margin:.5rem 0;max-width:68ch}
+.audio{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:.6rem .8rem;margin:0 0 .8rem}
+.script{margin-top:.5rem}
+.script p{margin:.25rem 0}
+.gap{margin:.55rem 0}
+.gap label{display:block;margin-bottom:.25rem}
+.gm{font-size:.88rem;font-weight:700;margin-top:.2rem;min-height:1.2em}
+.gm.ok{color:var(--ok)} .gm.bad{color:var(--bad)}
+.mapg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:380px;margin:.4rem 0 .9rem}
+.mapg div{border:1.5px solid var(--rule);border-radius:6px;padding:.55rem .3rem;text-align:center;min-height:58px;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.mapg .lbl{font-weight:400;color:var(--soft)}
+.mapg .pth{background:var(--hl-bg);border-style:dashed}
+.secprog{display:grid;grid-template-columns:7rem 1fr 3.5rem;gap:.6rem;align-items:center;margin:.4rem 0;font-size:.95rem}
+.fmt{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.7rem}
+.fmt div{border:1px solid var(--rule);border-radius:10px;padding:.7rem .85rem;background:var(--paper)}
+.fmt b{display:block;font-family:Caveat,"Segoe Print",cursive;font-size:1.6rem;line-height:1.1}
+.fmt p{margin:.25rem 0 0;font-size:.93rem}
+.wordlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.3rem 1rem;margin:.3rem 0}
+.wordlist span b{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>IELTS notebook</h1>
+      <a href="index.html" class="home-link">← Все материалы</a>
+      <p>Каждый тип задания: объяснение, практика, закрепление.</p>
+    </div>
+    <nav class="tabs" aria-label="Разделы">
+      <button type="button" class="tab" data-v="plan">План</button>
+      <button type="button" class="tab" data-v="format">Формат и правила</button>
+      <button type="button" class="tab" data-v="listening">Listening</button>
+      <button type="button" class="tab" data-v="reading">Reading</button>
+      <button type="button" class="tab" data-v="writing">Writing</button>
+      <button type="button" class="tab" data-v="speaking">Speaking</button>
+      <button type="button" class="tab" data-v="words">Слова</button>
+      <button type="button" class="tab" data-v="mistakes">Мои ошибки</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<p id="jsErr" class="fb" hidden></p>
+<!-- PLAN -->
+<section id="v-plan">
+  <h2 class="title">Мой план</h2>
+  <p class="lead">Лайфхаки работают, только когда закреплены практикой. Проходите по одному типу задания в день и отмечайте прогресс.</p>
+
+  <div class="grid2">
+    <div class="block">
+      <h3>Дата экзамена</h3>
+      <input type="date" id="examDate" aria-label="Дата экзамена">
+      <p class="big" id="daysLeft"></p>
+    </div>
+    <div class="block">
+      <h3>Лайфхак дня</h3>
+      <p id="dailyTip" style="margin:.2rem 0 0"></p>
+    </div>
+  </div>
+
+
+  <div class="block">
+    <h3>Ваше имя для статистики</h3>
+    <p class="how">Необязательно. Без имени результаты отправляются анонимно. Имя видит только автор материала.</p>
+    <div class="row"><input id="myName" maxlength="60" placeholder="Например: Айгуль" aria-label="Ваше имя"><button id="saveName">Сохранить</button></div>
+    <p class="small" id="nameMsg" aria-live="polite"></p>
+    <p class="small" id="statsNote"></p>
+  </div>
+  <div class="block">
+    <h3>Пройденные типы заданий</h3>
+    <p class="how">Откройте урок в разделе, сделайте практику и закрепление, затем нажмите «Отметить как пройдено».</p>
+    <div id="secProg"></div>
+  </div>
+
+  <div class="block">
+    <h3>Быстрая разминка</h3>
+    <p class="how">5 случайных вопросов из всех уроков. Делайте каждый день перед занятием: так правила остаются в памяти.</p>
+    <div id="warmup"></div>
+    <button class="mt" id="warmNew">Другие 5 вопросов</button>
+  </div>
+
+  <div class="block">
+    <h3>Неделя</h3>
+    <p class="how">Каждая строка — привычка. Меняйте список под своё расписание.</p>
+    <div class="scroll"><table class="week" id="week"></table></div>
+    <div class="row mt">
+      <input id="newTask" placeholder="Например: прочитать одну статью для удовольствия" aria-label="Новая привычка">
+      <button class="primary" id="addTask">Добавить</button>
+    </div>
+    <div class="mt"><div class="bar"><i id="wbar"></i></div><p class="small" id="wtxt"></p></div>
+    <button class="link" id="resetWeek">Очистить отметки для новой недели</button>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section id="v-format" hidden>
+  <h2 class="title">Формат и правила</h2>
+  <p class="lead">Сначала — как устроен экзамен и как правильно записывать ответы. Здесь теряют баллы даже те, кто всё понял.</p>
+  <div class="block">
+    <h3>Как устроен экзамен (Academic)</h3>
+    <div class="fmt">
+      <div><b>Listening</b><p>4 части, 40 вопросов, около 30 минут. Каждая запись звучит <mark>один раз</mark>. На бумаге даётся 10 минут на перенос ответов, на компьютере — 2 минуты на проверку.</p></div>
+      <div><b>Reading</b><p>3 текста, 40 вопросов, 60 минут. Тексты усложняются. <mark>Дополнительного времени на перенос нет.</mark></p></div>
+      <div><b>Writing</b><p>60 минут. Task 1: от 150 слов (~20 мин). Task 2: от 250 слов (~40 мин), <mark>весит вдвое больше</mark>.</p></div>
+      <div><b>Speaking</b><p>11–14 минут, 3 части, разговор с экзаменатором. Часто проходит в другой день.</p></div>
+    </div>
+    <p class="small mt">Каждая часть оценивается от 0 до 9. Итоговый балл — среднее, округлённое до 0,5.</p>
+  </div>
+
+  <div class="block">
+    <h3>Правила записи ответов</h3>
+    <ul class="tips">
+      <li><mark>Лимит слов — главный закон.</mark> NO MORE THAN TWO WORDS AND/OR A NUMBER = максимум 2 слова и 1 число. Лишнее слово, даже артикль, — ответ неверный.</li>
+      <li>Числа можно писать цифрами или словами. <mark>Цифры безопаснее:</mark> 48, а не forty-eight.</li>
+      <li>Слово через дефис считается одним словом: well-known, part-time.</li>
+      <li>Регистр не важен. Писать всё ЗАГЛАВНЫМИ — безопасно и разборчиво.</li>
+      <li>Спеллинг должен быть верным. Британский и американский варианты принимаются: colour/color.</li>
+      <li>В Reading слова берутся из текста <mark>без изменения формы</mark>: если в тексте children, child будет ошибкой.</li>
+      <li>Даты: 15 March и March 15 — оба верны. Время: 9.30, 9:30, 9.30 am.</li>
+      <li>TRUE/FALSE/NOT GIVEN и YES/NO/NOT GIVEN — разные задания. Пишите тот набор, который в инструкции, полностью.</li>
+      <li>В Matching и Multiple choice пишите только букву или римскую цифру.</li>
+      <li>На бумаге: карандаш, ответ строго в клетке со своим номером.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>Практика: засчитают ли ответ?</h3>
+    <div id="fmtQuiz"></div>
+  </div>
+</section>
+
+<!-- LISTENING -->
+<section id="v-listening" hidden>
+  <h2 class="title">Listening</h2>
+  <p class="lead">Вопросы идут по порядку записи. Ваша задача — быть на шаг впереди: читать вперёд и предсказывать ответ.</p>
+  <div class="block">
+    <h3>Что в каждой части</h3>
+    <div class="fmt">
+      <div><b>Part 1</b><p>Бытовой диалог: бронирование, регистрация. Чаще всего — форма с именами, числами, датами.</p></div>
+      <div><b>Part 2</b><p>Монолог на бытовую тему: экскурсия, объявление. Карты, multiple choice.</p></div>
+      <div><b>Part 3</b><p>Разговор 2–4 человек об учёбе. Multiple choice, matching.</p></div>
+      <div><b>Part 4</b><p>Академическая лекция <mark>без паузы</mark>. Заполнение конспекта.</p></div>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Общие лайфхаки</h3>
+    <ul class="tips">
+      <li><mark>Always read ahead.</mark> Время «на проверку» между частями тратьте на чтение следующих вопросов.</li>
+      <li>Предсказывайте тип ответа: число, имя, существительное, единственное или множественное число.</li>
+      <li>Правильный ответ обычно <mark>перефразирован</mark>. Слово, прозвучавшее дословно, — часто ловушка.</li>
+      <li>Слушайте до конца фразы: говорящие передумывают и исправляются.</li>
+      <li>Пропустили ответ — сразу к следующему. Не теряйте ещё три.</li>
+      <li>Слушайте смысл, а не отдельные слова.</li>
+    </ul>
+  </div>
+  <div class="block">
+    <h3>Разминка: диктант</h3>
+    <p class="how">Нажмите «Слушать», напишите услышанное и проверьте. Имена, телефоны и индексы — типичные ответы Part 1.</p>
+    <p class="small" id="dType"></p>
+    <div class="row">
+      <button class="primary" id="dPlay">Слушать</button>
+      <button id="dSlow">Медленнее</button>
+      <button class="link" id="dShow">Нет звука — показать текст</button>
+    </div>
+    <div class="row mt">
+      <input id="dIn" placeholder="Ваш ответ" aria-label="Ваш ответ" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button id="dCheck">Проверить</button>
+      <button id="dNext">Дальше</button>
+    </div>
+    <div class="fb" id="dFb" role="status"></div>
+    <p class="score" id="dScore"></p>
+  </div>
+  <h3>Типы заданий</h3>
+  <p class="how">Откройте урок: объяснение → практика → закрепление. Звук читается голосом браузера; скрипт можно открыть после ответа.</p>
+  <div id="lessons-listening"></div>
+</section>
+
+<!-- READING -->
+<section id="v-reading" hidden>
+  <h2 class="title">Reading</h2>
+  <p class="lead">Не скорость, а контроль. Читайте с целью и знайте, куда уходит каждая минута.</p>
+  <div class="block">
+    <h3>Таймер по секциям</h3>
+    <p class="how">Включайте во время пробного теста: 12 + 18 + 23 минуты на тексты и 7 на перенос и проверку.</p>
+    <p class="small" id="phaseName">Section 1</p>
+    <div class="clock" id="clock">12:00</div>
+    <div class="phases" id="phases"></div>
+    <div class="row">
+      <button class="primary" id="tStart">Старт</button>
+      <button id="tNext">Следующая секция</button>
+      <button class="link" id="tReset">Сбросить</button>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Общая стратегия</h3>
+    <ol class="steps">
+      <li>Начинайте с вопросов, а не с текста. Пролистайте текст за 2–3 минуты, только если успеваете.</li>
+      <li><mark>Matching Headings — первым</mark>, оно идёт абзац за абзацем и даёт карту текста.</li>
+      <li>Затем задания «по порядку»: TFNG, multiple choice, completion.</li>
+      <li><mark>Matching Information — последним</mark>, когда вы уже знаете текст.</li>
+      <li>Переносите ответы после каждого текста.</li>
+    </ol>
+    <ul class="tips mt">
+      <li>Выделяйте имена, даты, теории, места.</li>
+      <li>Не каждое предложение отвечает на вопрос. Ищите место, а потом читайте внимательно.</li>
+      <li>Reading — это тест на <mark>синонимы</mark>. Учите слова тематическими группами.</li>
+      <li>Не знаете ответ — поставьте вариант наугад. За неверный ответ баллы не снимают.</li>
+    </ul>
+  </div>
+  <h3>Типы заданий</h3>
+  <p class="how">В практике используются два коротких текста. Откройте текст над заданием, если нужно.</p>
+  <div id="lessons-reading"></div>
+</section>
+
+<!-- WRITING -->
+<section id="v-writing" hidden>
+  <h2 class="title">Writing</h2>
+  <p class="lead">Ваш текст — отражение вашего мышления. Одна понятная структура для каждого задания.</p>
+  <div class="block">
+    <h3>По каким критериям оценивают</h3>
+    <div class="fmt">
+      <div><b>Task Achievement / Response</b><p>Ответили ли вы на задание полностью. В Task 1 — есть ли overview.</p></div>
+      <div><b>Coherence &amp; Cohesion</b><p>Логика, абзацы, связки.</p></div>
+      <div><b>Lexical Resource</b><p>Разнообразие и точность слов, парафраз.</p></div>
+      <div><b>Grammar</b><p>Разные конструкции и точность.</p></div>
+    </div>
+    <ul class="tips mt">
+      <li>Делайте <mark>Task 2 первым</mark> (40 мин), потом Task 1 (20 мин).</li>
+      <li>Меньше 150 / 250 слов — штраф. Тренируйтесь без счётчика, чтобы чувствовать объём.</li>
+      <li>Отдавайте тексты на проверку: практика без исправлений закрепляет ошибки.</li>
+    </ul>
+  </div>
+  <div id="lessons-writing"></div>
+</section>
+
+<!-- SPEAKING -->
+<section id="v-speaking" hidden>
+  <h2 class="title">Speaking</h2>
+  <p class="lead">Говорите развёрнуто и естественно. Формула PREP превращает короткий ответ в полный.</p>
+  <div class="block">
+    <h3>Критерии (по 25%)</h3>
+    <div class="fmt">
+      <div><b>Fluency</b><p>Говорите без долгих пауз и логично.</p></div>
+      <div><b>Vocabulary</b><p>Разные слова, парафраз, выражения.</p></div>
+      <div><b>Grammar</b><p>Сложные предложения: which, because, whenever.</p></div>
+      <div><b>Pronunciation</b><p>Понятность, ударение, интонация.</p></div>
+    </div>
+  </div>
+  <div id="lessons-speaking"></div>
+</section>
+
+<!-- WORDS -->
+<section id="v-words" hidden>
+  <h2 class="title">Слова</h2>
+  <p class="lead">Учите слова тематическими группами. Нажмите на карточку, чтобы перевернуть, и отметьте, знали ли вы слово.</p>
+  <div class="block">
+    <label class="f" for="deckSel">Набор</label>
+    <select id="deckSel">
+      <option value="butterflies">Reading: climate change and butterflies</option>
+      <option value="micro">Listening: microplastics</option>
+      <option value="map">Listening: карты и направления</option>
+      <option value="trends">Writing Task 1: тренды и сравнения</option>
+      <option value="linkers">Writing Task 2: связки</option>
+    </select>
+    <div id="wordDeck" class="mt"></div>
+  </div>
+</section>
+
+<!-- MISTAKES -->
+<section id="v-mistakes" hidden>
+  <h2 class="title">Мои ошибки</h2>
+  <p class="lead">Практика без анализа закрепляет плохие привычки. Записывайте каждую ошибку и причину.</p>
+  <div class="block">
+    <h3>Добавить ошибку</h3>
+    <div class="grid2">
+      <div><label class="f" for="mSec">Часть</label>
+        <select id="mSec"><option>Listening</option><option>Reading</option><option>Writing</option><option>Speaking</option></select></div>
+      <div><label class="f" for="mType">Тип задания</label><input id="mType" placeholder="например, Matching headings"></div>
+      <div><label class="f" for="mMine">Мой ответ</label><input id="mMine"></div>
+      <div><label class="f" for="mRight">Правильный ответ</label><input id="mRight"></div>
+    </div>
+    <label class="f" for="mWhy">Почему ошибся?</label>
+    <select id="mWhy"></select>
+    <label class="f" for="mNote">Заметка для себя</label>
+    <textarea id="mNote" placeholder="например: reduced в вопросе = cut в тексте"></textarea>
+    <div class="row mt"><button class="primary" id="mAdd">Добавить</button></div>
+    <div class="fb" id="mFb" role="status"></div>
+  </div>
+  <div class="block">
+    <h3>Мои слабые места</h3>
+    <div id="mStats"></div>
+  </div>
+  <div class="block">
+    <div class="row" style="justify-content:space-between"><h3 style="margin:0">Все ошибки</h3><button id="mExport">Скопировать текстом</button></div>
+    <div id="mList" class="mt"></div>
+  </div>
+</section>
+</main>
+<script>
+/* ---------- router (first, so tabs work even if something later fails) ---------- */
+const VIEWS=['plan','format','listening','reading','writing','speaking','words','mistakes'];
+function show(v){
+  if(VIEWS.indexOf(v)<0) v='plan';
+  for(const x of VIEWS){const el=document.getElementById('v-'+x);if(el)el.hidden=(x!==v)}
+  document.querySelectorAll('nav.tabs .tab').forEach(t=>{if(t.dataset.v===v)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
+  try{window.scrollTo(0,0)}catch(e){}
+  try{speechSynthesis.cancel()}catch(e){}
+  try{localStorage.setItem('ieltsnb:view',JSON.stringify(v))}catch(e){}
+}
+document.addEventListener('click',function(e){
+  const t=e.target.closest?e.target.closest('[data-v]'):null;
+  if(!t||VIEWS.indexOf(t.dataset.v)<0) return;
+  e.preventDefault();
+  show(t.dataset.v);
+});
+(function(){let v='plan';try{const h=location.hash.replace('#','');if(VIEWS.indexOf(h)>=0)v=h;else{const sv=JSON.parse(localStorage.getItem('ieltsnb:view')||'"plan"');if(VIEWS.indexOf(sv)>=0)v=sv}}catch(e){}show(v)})();
+window.addEventListener('error',function(e){try{const d=document.getElementById('jsErr');if(d){d.hidden=false;d.className="fb bad";d.textContent='Ошибка на странице: '+(e.message||'')+' (строка '+(e.lineno||'?')+'). Отправьте скриншот этого сообщения.'}}catch(_){}} );
+
+/* ---------- stats: counter + anonymous results (Supabase REST, no library) ---------- */
+const CFG=window.IELTS_CONFIG||{};
+const STATS_ON=!!(CFG.supabaseUrl&&CFG.anonKey&&!/YOUR_/.test(CFG.supabaseUrl+CFG.anonKey));
+function newId(){try{if(crypto.randomUUID)return crypto.randomUUID()}catch(e){}return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)})}
+const ANON=(()=>{try{let id=localStorage.getItem('ieltsnb:anon');if(!id){id=newId();localStorage.setItem('ieltsnb:anon',id)}return id}catch(e){return newId()}})();
+function sbPost(path,body){
+  if(!STATS_ON) return Promise.resolve(false);
+  const h={'apikey':CFG.anonKey,'Content-Type':'application/json','Prefer':'return=minimal'};
+  if(/^eyJ/.test(CFG.anonKey)) h['Authorization']='Bearer '+CFG.anonKey; /* legacy anon key is a JWT; new publishable keys go in apikey only */
+  return fetch(CFG.supabaseUrl.replace(/\/$/,'')+'/rest/v1/'+path,{method:'POST',headers:h,body:JSON.stringify(body),keepalive:true}).then(r=>r.ok).catch(()=>false);
+}
+/* Встроен в платформу? Тогда не ходим в базу сами, а сообщаем странице-родителю (протокол v1). */
+const EMBED=(()=>{try{return window.parent!==window}catch(e){return true}})();
+function toParent(msg){try{window.parent.postMessage(Object.assign({v:1},msg),'*')}catch(e){}}
+function trackEvent(kind){
+  if(EMBED){if(kind==='finish')toParent({type:'trainer:finish'});return Promise.resolve(true)}
+  return sbPost('ielts_events',{anon_id:ANON,page:(CFG.page||'ielts').slice(0,40),kind});
+}
+function myName(){try{const v=(localStorage.getItem('ieltsnb:name')||'').trim();return v?v.slice(0,60):null}catch(e){return null}}
+function report(key,score,max){
+  if(!key||!max) return;
+  if(EMBED){toParent({type:'trainer:result',lesson:String(key).slice(0,80),score:Math.max(0,Math.min(score,max)),max});return}
+  let sent={};try{sent=JSON.parse(localStorage.getItem('ieltsnb:sent')||'{}')}catch(e){}
+  const first=!sent[key]; sent[key]=1;
+  try{localStorage.setItem('ieltsnb:sent',JSON.stringify(sent))}catch(e){}
+  sbPost('ielts_results',{anon_id:ANON,lesson:String(key).slice(0,80),score:Math.max(0,Math.min(score,max)),max_score:max,first_try:first,display_name:myName()});
+}
+
+/* ---------- helpers ---------- */
+const S={
+  get(k,d){try{const v=localStorage.getItem('ieltsnb:'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('ieltsnb:'+k,JSON.stringify(v))}catch(e){}}
+};
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function fb(el,ok,msg){el.className='fb '+(ok?'ok':'bad');el.textContent=msg}
+const norm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[–—]/g,'-').replace(/\s+/g,' ').trim().replace(/\.$/,'');
+const isNum=t=>/^[£$€]?\d[\d.,:\-\/]*(%|am|pm|a\.m|p\.m)?$/i.test(t);
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)();const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.value=.15;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.35)}catch(e){}}
+
+/* ---------- speech ---------- */
+const canSpeak='speechSynthesis' in window;
+function enVoices(){try{return speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang))}catch(e){return[]}}
+function speakLines(lines,rate){
+  if(!canSpeak) return false;
+  try{
+    speechSynthesis.cancel();
+    const vs=enVoices(), gb=vs.filter(v=>/GB/i.test(v.lang));
+    const pool=gb.length>1?gb:(vs.length?vs:[]);
+    const spk={};let n=0;
+    lines.forEach(([who,text])=>{
+      if(!(who in spk)) spk[who]=n++;
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang='en-GB';u.rate=rate||0.92;
+      if(pool.length) u.voice=pool[spk[who]%pool.length];
+      u.pitch=spk[who]%2?0.85:1.08;
+      speechSynthesis.speak(u);
+    });
+    return true;
+  }catch(e){return false}
+}
+const speak=(t,r)=>speakLines([['A',t]],r);
+if(canSpeak){try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}catch(e){}}
+
+/* ---------- multiple choice ---------- */
+function mcq(el,items,inline,cb){
+  el.innerHTML=items.map((it,i)=>`<div class="q">${it.tag?`<div class="small">${esc(it.tag)}</div>`:''}${it.t?`<p class="quote">${esc(it.t)}</p>`:''}<p class="qq"><b>${i+1}.</b> ${esc(it.q)}</p><div class="opts${inline||it.inline?' inline':''}">${it.o.map((o,j)=>`<button class="opt" data-i="${i}" data-j="${j}">${esc(o)}</button>`).join('')}</div><div class="fb" role="status"></div></div>`).join('')+'<p class="score" aria-live="polite"></p><button class="link again-all">Пройти заново</button>';
+  const missed=new Set();
+  el.onclick=e=>{
+    if(e.target.classList.contains('again-all')){mcq(el,items,inline,cb);return}
+    const b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    const q=b.closest('.q'); if(q.dataset.done) return;
+    const i=+b.dataset.i, j=+b.dataset.j, it=items[i];
+    if(j===it.a){
+      b.classList.add('right'); q.dataset.done='1';
+      $$('.opt',q).forEach(x=>{if(x!==b)x.disabled=true});
+      fb($('.fb',q),true,'Верно. '+(it.why||''));
+    }else{
+      b.classList.add('wrong'); b.disabled=true; missed.add(i);
+      fb($('.fb',q),false,'Не совсем. Попробуйте ещё раз.'+(it.hint?' Подсказка: '+it.hint:''));
+    }
+    const done=$$('.q[data-done]',el).length;
+    $('.score',el).textContent=done===items.length?`Готово: ${items.length-missed.size} из ${items.length} с первой попытки.`:'';
+    if(done===items.length&&cb) cb(items.length-missed.size,items.length);
+  };
+}
+
+/* ---------- matching with dropdowns ---------- */
+function matcher(el,rows,options,keepOrder,cb){
+  const opts=keepOrder?options.slice():shuffle(options);
+  el.innerHTML=rows.map((r,i)=>`<div class="match-row" data-i="${i}"><div><div>${esc(r.l)}</div><div class="mark" aria-live="polite"></div></div><select aria-label="Ответ для: ${esc(r.l)}"><option value="">Выберите…</option>${opts.map(o=>`<option>${esc(o)}</option>`).join('')}</select></div>`).join('')+'<div class="row mt"><button class="primary chk">Проверить</button><button class="link rst">Очистить</button></div><div class="fb" role="status"></div>';
+  $('.chk',el).onclick=()=>{
+    let n=0;
+    $$('.match-row',el).forEach(row=>{
+      const r=rows[+row.dataset.i], v=$('select',row).value, ok=v===r.a;
+      if(ok)n++;
+      row.classList.toggle('okr',ok); row.classList.toggle('badr',!ok);
+      $('.mark',row).textContent=ok?'✓ Верно':(v?'✗ Не этот вариант':'✗ Выберите ответ');
+    });
+    fb($('.fb',el),n===rows.length,n===rows.length?`Все ${n} верно.`:`Верно ${n} из ${rows.length}. Исправьте отмеченные ✗.`);
+    if(cb) cb(n,rows.length);
+  };
+  $('.rst',el).onclick=()=>matcher(el,rows,options,keepOrder,cb);
+}
+
+/* ---------- tap-to-order ---------- */
+function orderEx(el,items,doneMsg,cb){
+  let picked=[];
+  const sh=shuffle(items.map((t,i)=>({t,i})));
+  el.innerHTML='<p class="small">Нажимайте на части в правильном порядке.</p><div class="pool"></div><ol class="seq"></ol><div class="row"><button class="primary chk">Проверить порядок</button><button class="link rst">Начать заново</button></div><div class="fb" role="status"></div>';
+  const pool=$('.pool',el), seq=$('.seq',el);
+  function draw(){
+    const left=sh.filter(x=>!picked.includes(x.i));
+    pool.innerHTML=left.length?left.map(x=>`<button class="opt" data-i="${x.i}">${esc(x.t)}</button>`).join(''):'<p class="small">Всё расставлено. Проверьте порядок.</p>';
+    seq.innerHTML=picked.map(i=>`<li>${esc(items[i])}</li>`).join('');
+  }
+  pool.onclick=e=>{const b=e.target.closest('.opt');if(!b)return;picked.push(+b.dataset.i);draw()};
+  $('.rst',el).onclick=()=>{picked=[];draw();$('.fb',el).className='fb'};
+  $('.chk',el).onclick=()=>{
+    if(picked.length<items.length){fb($('.fb',el),false,'Сначала расставьте все части.');return}
+    const right=picked.filter((v,k)=>v===k).length;
+    fb($('.fb',el),right===items.length,right===items.length?'Верно. '+doneMsg:`На своём месте ${right} из ${items.length}. Начните заново и подумайте над порядком.`);
+    if(cb) cb(right,items.length);
+  };
+  draw();
+}
+
+/* ---------- gap fill ---------- */
+function checkGap(v,it,limit){
+  if(!v.trim()) return {ok:false,msg:'Пусто. В экзамене лучше написать догадку, чем ничего.'};
+  if(it.num){const d=v.replace(/\D/g,'');return it.a.includes(d)?{ok:true,msg:'✓ Верно'}:{ok:false,msg:'✗ Неверно. Правильно: '+it.show}}
+  const n=norm(v), toks=n.split(' ');
+  const nums=toks.filter(isNum).length, words=toks.length-nums;
+  if(limit&&(words>limit.w||nums>(limit.n?1:0))) return {ok:false,msg:`✗ Превышен лимит (${limit.label}). Такой ответ не засчитают, даже если смысл верный.`};
+  if(it.a.map(norm).includes(n)) return {ok:true,msg:'✓ Верно'};
+  const near=it.a.find(a=>{a=norm(a);return a.replace(/s$/,'')===n.replace(/s$/,'')});
+  if(near) return {ok:false,msg:'✗ Почти: проверьте единственное/множественное число. Правильно: '+it.a[0]};
+  return {ok:false,msg:'✗ Неверно. Правильно: '+(it.show||it.a[0])};
+}
+function gaps(el,P,cb){
+  el.innerHTML=P.items.map((it,i)=>{const id='g'+Math.random().toString(36).slice(2,8);return `<div class="gap"><label for="${id}">${esc(it.q)}</label><input id="${id}" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="gm" aria-live="polite"></div></div>`}).join('')+'<div class="row mt"><button class="primary chk">Проверить</button><button class="link rst">Очистить</button></div><div class="fb" role="status"></div>';
+  $('.chk',el).onclick=()=>{
+    let n=0;
+    $$('.gap',el).forEach(g=>{const inp=$('input',g),it=P.items[+inp.dataset.i];const r=checkGap(inp.value,it,P.limit);if(r.ok)n++;const m=$('.gm',g);m.className='gm '+(r.ok?'ok':'bad');m.textContent=r.msg});
+    fb($('.fb',el),n===P.items.length,n===P.items.length?`Все ${n} верно.`:`Верно ${n} из ${P.items.length}.`);
+    if(cb) cb(n,P.items.length);
+  };
+  $('.rst',el).onclick=()=>gaps(el,P,cb);
+}
+
+/* ---------- flashcards ---------- */
+function deck(el,cards,key){
+  const known=new Set(S.get('known:'+key,[]));
+  let onlyReview=false, order=[], pos=0, flipped=false;
+  el.innerHTML='<div class="card" tabindex="0" role="button" aria-label="Перевернуть карточку"><div class="front"></div><div class="back" hidden></div></div><div class="row mt"><button class="again">Повторить</button><button class="primary got">Знаю</button><button class="skip">Пропустить</button></div><div class="row mt small" style="justify-content:space-between"><span class="count"></span><label class="row" style="gap:.4rem"><input type="checkbox" class="only"> Только на повтор</label><button class="link reset">Сбросить</button></div>';
+  const card=$('.card',el), front=$('.front',el), back=$('.back',el);
+  const save=()=>S.set('known:'+key,[...known]);
+  function build(){order=shuffle(cards.map((c,i)=>i).filter(i=>!onlyReview||!known.has(i)));pos=0;show()}
+  function show(){
+    flipped=false; back.hidden=true; front.hidden=false;
+    const c=cards[order[pos]];
+    if(c==null){front.innerHTML='<p>Повторять нечего. Снимите фильтр или сбросьте прогресс.</p>'}
+    else{
+      front.innerHTML=`<div class="term">${esc(c.f)}</div><p class="small">Нажмите, чтобы увидеть значение</p>`;
+      back.innerHTML=`<div class="mean">${esc(c.b)}</div>${c.s?`<p class="small">${esc(c.s)}</p>`:''}`;
+    }
+    $('.count',el).textContent=`Знаю ${known.size} из ${cards.length}`;
+  }
+  function flip(){if(order[pos]==null)return;flipped=!flipped;front.hidden=flipped;back.hidden=!flipped}
+  function next(){pos++;if(pos>=order.length)build();else show()}
+  card.onclick=flip;
+  card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}};
+  $('.got',el).onclick=()=>{if(order[pos]==null)return;known.add(order[pos]);save();next()};
+  $('.again',el).onclick=()=>{if(order[pos]==null)return;known.delete(order[pos]);save();next()};
+  $('.skip',el).onclick=()=>{if(order.length)next()};
+  $('.only',el).onchange=e=>{onlyReview=e.target.checked;build()};
+  $('.reset',el).onclick=()=>{known.clear();save();build()};
+  build();
+}
+
+/* ---------- practice wrapper ---------- */
+function renderPractice(el,P,key){
+  const cb=key?(sc,mx)=>report(key,sc,mx):null;
+  let h='';
+  if(P.title) h+=`<p class="instr" style="font-weight:400">${esc(P.title)}</p>`;
+  if(P.audio) h+=`<div class="audio"><div class="row"><button class="primary pl">▶ Слушать</button><button class="sl">Медленнее</button><button class="st">Стоп</button><button class="link sh">Показать скрипт</button></div><div class="script small" hidden>${P.audio.map(([w,t])=>`<p><b>${esc(w)}:</b> ${esc(t)}</p>`).join('')}</div></div>`;
+  if(P.passage) h+=`<details class="pass"${P.closed?'':' open'}><summary>Текст: ${esc(PASS[P.passage].title)}</summary>${PASS[P.passage].paras.map(p=>`<p>${esc(p)}</p>`).join('')}</details>`;
+  if(P.map) h+=MAPHTML;
+  if(P.instr) h+=`<p class="instr">${esc(P.instr)}</p>`;
+  h+='<div class="pbody"></div>';
+  el.innerHTML=h;
+  if(P.audio){
+    const fail=()=>{const s=$('.script',el);s.hidden=false;$('.sh',el).textContent='Скрыть скрипт'};
+    $('.pl',el).onclick=()=>{if(!speakLines(P.audio,0.92))fail()};
+    $('.sl',el).onclick=()=>{if(!speakLines(P.audio,0.7))fail()};
+    $('.st',el).onclick=()=>{try{speechSynthesis.cancel()}catch(e){}};
+    $('.sh',el).onclick=()=>{const s=$('.script',el);s.hidden=!s.hidden;$('.sh',el).textContent=s.hidden?'Показать скрипт':'Скрыть скрипт'};
+  }
+  const b=$('.pbody',el);
+  if(P.kind==='mcq') mcq(b,P.items,P.inline,cb);
+  else if(P.kind==='gap') gaps(b,P,cb);
+  else if(P.kind==='match') matcher(b,P.rows,P.options,P.keepOrder,cb);
+  else if(P.kind==='order') orderEx(b,P.items,P.msg||'',cb);
+  else if(P.kind==='deck') deck(b,P.cards,P.key);
+  else if(P.kind==='html'){b.innerHTML=P.html;if(P.init)P.init(b)}
+}
+
+/* ---------- lessons ---------- */
+let done=new Set(S.get('done',[]));
+const ORDER={in:'Ответы идут по порядку.',not:'Ответы НЕ по порядку.',mixed:'Частично по порядку.'};
+const ALL={};
+function renderLessons(host,lessons,sec){
+  ALL[sec]=lessons;
+  host.innerHTML=lessons.map(L=>{
+    let n=0;const H=t=>`<h4><span class="n">${++n}</span>${t}</h4>`;
+    return `<details class="lesson" id="L-${L.id}"><summary><span>${L.icon||''}</span><span><span class="lt">${esc(L.title)}</span><span class="lm">${esc(L.where||'')}</span></span><span class="ld">${done.has(L.id)?'✓ пройдено':''}</span></summary><div class="lb">
+${H('Что это')}<p>${esc(L.what)}</p>
+${L.order?`<p class="order ${L.order}"><b>${ORDER[L.order]}</b> ${esc(L.orderNote||'')}</p>`:''}
+${L.steps?H(L.stepsTitle||'Как найти ответ')+`<ol class="steps">${L.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}
+${L.format?H(L.formatTitle||'Как записать ответ')+`<ul class="tips">${L.format.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+${L.traps?H('Ловушки')+`<ul class="tips">${L.traps.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+${L.extra?H(L.extraTitle||'Полезный язык')+L.extra:''}
+${L.practice?H('Практика')+L.practice.map(()=>'<div class="practice-box"></div>').join(''):''}
+${L.check?H('Закрепление')+'<p class="small">Короткая проверка: поняли ли вы правило.</p><div class="check"></div>':''}
+<div class="row mt"><button class="mark">${done.has(L.id)?'Пройдено ✓ (снять отметку)':'Отметить как пройдено'}</button></div>
+</div></details>`}).join('');
+  lessons.forEach(L=>{
+    const d=$('#L-'+L.id);
+    let inited=false;
+    const init=()=>{if(inited)return;inited=true;
+      if(L.practice) $$('.practice-box',d).forEach((box,i)=>renderPractice(box,L.practice[i],L.id+'/p'+(i+1)));
+      if(L.check) mcq($('.check',d),L.check,L.checkInline,(sc,mx)=>report(L.id+'/check',sc,mx));};
+    d.addEventListener('toggle',()=>{if(d.open)init()});
+    $('.mark',d).onclick=()=>{
+      if(done.has(L.id))done.delete(L.id);else done.add(L.id);
+      S.set('done',[...done]);
+      if(done.has(L.id)) trackEvent('finish');
+      $('.ld',d).textContent=done.has(L.id)?'✓ пройдено':'';
+      $('.mark',d).textContent=done.has(L.id)?'Пройдено ✓ (снять отметку)':'Отметить как пройдено';
+      secProgress();
+    };
+  });
+}
+/* =============== DATA: passages =============== */
+const PASS={
+  bees:{title:'The rise of the city beekeeper',paras:[
+    'A. In the past two decades, beehives have appeared on rooftops in London, Paris and New York. What began as a hobby for a handful of enthusiasts has become a fashionable activity, with some hotels and office blocks now advertising their own honey.',
+    'B. Supporters argue that cities can be surprisingly good places for bees. Parks, gardens and roadside trees offer a wide variety of flowers, and urban areas are usually free of the agricultural pesticides that harm bees in the countryside. Dr Helen Marsh, an ecologist at Bristol University, found that city colonies produced up to a third more honey than rural ones.',
+    'C. However, not everyone is convinced. Professor Liam O’Connor warns that the number of hives in central London has grown faster than the supply of flowers. When too many colonies compete for the same food, he says, the bees go hungry, and wild bee species, which do not produce honey, may be pushed out altogether.',
+    'D. Disease is a further concern. Honeybees kept close together can pass infections from hive to hive, and amateur keepers may not recognise the early signs. A 2019 survey by Dr Ana Ruiz found that fewer than half of new urban beekeepers had received any formal training.',
+    'E. Most experts agree that the answer is not to ban hives but to plant more. Councils in several cities now encourage residents to grow wildflowers on balconies and roadsides, an approach that benefits both honeybees and their wild relatives.'
+  ]},
+  sleep:{title:'Sleep and learning',paras:[
+    'For centuries, sleep was seen as a passive state in which the brain simply rested. Research over the last thirty years has shown the opposite. During deep sleep, the brain replays information learned during the day and transfers it from short-term to long-term memory.',
+    'In one well-known experiment, students who learned a list of words in the evening and then slept for eight hours remembered around 20% more the next morning than students who stayed awake for the same period. Interestingly, a short nap of 60–90 minutes produced similar, though smaller, benefits.',
+    'Despite this evidence, many teenagers sleep far less than the nine hours experts recommend. Smartphones are often blamed, but school start times may matter more: adolescents’ body clocks naturally shift later, so an 8 a.m. start forces many to learn when they are barely awake.',
+    'In my view, schools that refuse to consider later start times are ignoring clear scientific evidence. Moving the school day by even an hour would be a simple, inexpensive change. Of course, it would create problems for parents’ work schedules, but these are hardly a reason to keep pupils exhausted.'
+  ]}
+};
+const MAPHTML='<div class="mapg" aria-label="План парка"><div class="lbl">Car park</div><div class="pth">path</div><div>A</div><div>B</div><div class="lbl">Fountain</div><div>C</div><div>D</div><div class="lbl">Entrance ↑</div><div>E</div></div><p class="small">Вы входите снизу через Entrance и идёте вверх, к фонтану.</p>';
+const TF3=['TRUE','FALSE','NOT GIVEN'], YN3=['YES','NO','NOT GIVEN'], DA=['Да','Нет'];
+
+/* =============== LISTENING lessons =============== */
+const L_LISTEN=[
+{id:'l-form',icon:'📝',title:'Form, note and table completion',where:'Part 1 (форма), Part 4 (конспект)',
+ what:'Вы заполняете пропуски в бланке, конспекте или таблице, пока слушаете. Самый «лёгкий» тип — и самый частый, где теряют баллы из-за спеллинга и лимита слов.',
+ order:'in',orderNote:'В таблице — обычно строка за строкой, слева направо. Проверьте направление до записи.',
+ steps:['Прочитайте инструкцию и обведите лимит: ONE WORD ONLY, NO MORE THAN TWO WORDS AND/OR A NUMBER.','Для каждого пропуска предскажите тип ответа: число, имя, дата, существительное в единственном или множественном числе.','Подчеркните слова рядом с пропуском: в записи прозвучит их синоним — это сигнал, что ответ близко.','Следите за заголовками формы. Если говорящий перешёл к следующему пункту, а ответа не было, двигайтесь дальше.','Когда слово диктуют по буквам, записывайте буквы сразу, не пытаясь «узнать» слово.','После каждой части проверьте спеллинг и окончание -s.'],
+ format:['Числа — цифрами: 48, а не forty-eight.','Даты: 15 March или March 15. Время: 9.30, 9:30 или 9.30 am.','Не повторяйте то, что уже напечатано рядом с пропуском (знак £, слово per term).','Можно писать заглавными: регистр не важен.'],
+ traps:['Исправления: «fifty… sorry, fifteen» — пишите последний вариант.','fifteen / fifty, thirteen / thirty: слушайте ударение — fifTEEN, но FIFty.','double 2 = 22, triple 0 = 000, oh = 0.','Похожие буквы: A/E/I, G/J, B/P/V, M/N.'],
+ practice:[{kind:'gap',title:'Звонок в спортивный центр. Сначала прочитайте форму (10 секунд), потом слушайте.',
+  audio:[['Woman','Good morning, Riverside Sports Centre. How can I help?'],['Man','Hi. I’d like to join the beginners’ swimming class, please.'],['Woman','Of course. Can I take your surname?'],['Man','Yes, it’s Kowalski. That’s K, O, W, A, L, S, K, I.'],['Woman','Thank you. And a contact number?'],['Man','It’s oh seven seven three four, double two, nine, nine one six.'],['Woman','Great. The class used to be on Tuesdays, but we’ve moved it to Thursdays, at six thirty in the evening.'],['Man','And how much is it?'],['Woman','It’s forty-eight pounds for the term. Oh, and we don’t lend equipment, so you’ll need to bring your own goggles.']],
+  instr:'Write ONE WORD AND/OR A NUMBER for each answer.',limit:{w:1,n:true,label:'ONE WORD AND/OR A NUMBER'},
+  items:[{q:'Surname: ______',a:['kowalski']},{q:'Phone number: ______',a:['07734229916'],num:true,show:'07734 229916'},{q:'Class day: ______',a:['thursday','thursdays']},{q:'Cost per term: £______',a:['48']},{q:'Must bring own: ______',a:['goggles']}]}],
+ check:[{q:'Инструкция ONE WORD AND/OR A NUMBER. Засчитают ли “on Thursday”?',o:DA,a:1,why:'Это два слова — лимит превышен.'},
+  {q:'Говорящий: “It’s fifty… sorry, fifteen pounds.” Что пишем?',o:['50','15','50 или 15'],a:1,why:'Пишем исправленный вариант.'},
+  {q:'Перед пропуском уже напечатано “£”. Что писать?',o:['48','48 pounds','£48 pounds'],a:0,why:'Не повторяйте то, что напечатано, и не добавляйте лишние слова.'}],checkInline:true},
+
+{id:'l-mcq',icon:'🔘',title:'Multiple choice',where:'Part 2, Part 3',
+ what:'Вопрос и три варианта (A–C) или выбор двух вариантов из списка (A–E). Самый «ловушечный» тип: обычно звучат все варианты.',
+ order:'in',
+ steps:['Подчеркните ключевые слова в вопросе — именно их (или синонимы) вы будете ждать.','Прочитайте варианты и найдите, чем они отличаются друг от друга.','Слушайте до конца: два варианта обычно упоминаются и отбрасываются.','Ищите перефразированный смысл, а не те же слова.','В «Choose TWO» порядок букв не важен: каждая буква — отдельный балл.'],
+ format:['Пишите только букву: A, B или C.','В Choose TWO буквы можно записать в любом порядке.'],
+ traps:['Слово из варианта прозвучало дословно — это часто ловушка.','Сигналы смены мысли: but, actually, however, in the end, to be honest.','Вариант, который «наполовину верный», — неверный.'],
+ practice:[{kind:'mcq',title:'Два студента обсуждают проект.',
+  audio:[['Woman','So why did we pick transport for our project again?'],['Man','Well, our tutor did mention it as an option, and there’s certainly plenty written about it. But honestly, we chose it because we both cycle to college every day and wanted to know more.'],['Woman','True. What did you find hardest so far?'],['Man','I expected analysing the data to be the tricky part, but the software made that easy. What really took ages was getting people to fill in the survey.'],['Woman','So what next? Should we interview some teachers?'],['Man','Maybe later. Thirty responses isn’t enough, so let’s get more first, and only then start writing.']],
+  items:[{q:'Why did the students choose transport?',o:['A  Their tutor suggested it.','B  They have a personal interest in it.','C  There is a lot of research on it.'],a:1,why:'“We both cycle… wanted to know more” = personal interest. A и C упомянуты, но отброшены словом “But honestly”.'},
+   {q:'What did the man find most difficult?',o:['A  Finding people to take part','B  Analysing the data','C  Using the software'],a:0,why:'“Getting people to fill in the survey” = finding people to take part.'},
+   {q:'What will they do next?',o:['A  Interview teachers','B  Collect more responses','C  Start writing'],a:1,why:'“Let’s get more first” — интервью “maybe later”, писать — “only then”.'}]}],
+ check:[{q:'В записи дословно прозвучало слово из варианта A. Что это скорее значит?',o:['Это ответ','Это может быть ловушка — слушаем дальше'],a:1},
+  {q:'Choose TWO letters. Вы написали C, A вместо A, C. Засчитают?',o:DA,a:0,why:'Порядок не важен.'},
+  {q:'Какое слово чаще всего сигналит, что сейчас прозвучит настоящий ответ?',o:['also','actually','and'],a:1}],checkInline:true},
+
+{id:'l-match',icon:'🔗',title:'Matching',where:'Part 3, иногда Part 2',
+ what:'Список пунктов (люди, места, этапы) нужно соединить с вариантами из рамки (A–F). Вариантов больше, чем пунктов.',
+ order:'mixed',orderNote:'Пункты (вопросы) идут по порядку, а варианты A–F — нет.',
+ steps:['Прочитайте варианты и мысленно перефразируйте каждый.','Пункты звучат дословно и по порядку — используйте их как сигнал.','Проверьте инструкцию: можно ли использовать вариант больше одного раза.','Говорящий может сначала упомянуть один вариант, а потом другой — ждите конца мысли.','Зачёркивайте использованные варианты, если повторять нельзя.'],
+ format:['Пишите только букву.'],
+ traps:['Лишние варианты звучат как дистракторы: о них говорят, но не про этот пункт.'],
+ practice:[{kind:'match',title:'Гид рассказывает о музее.',
+  audio:[['Guide','Let me tell you about the three main areas. In the science room, the displays are interactive, so younger visitors can touch everything. It’s ideal for families with kids. Next, the ancient history section. It’s fascinating, but I’m afraid it’s shut at the moment while the roof is being repaired. And finally, the art gallery. Yes, there’s an extra charge of five pounds, but believe me, it’s money well spent. It does get busy, but mainly on weekday mornings with school groups.']],
+  instr:'What does the guide say about each area? Choose A–E.',
+  rows:[{l:'Science room',a:'B  Best for children'},{l:'Ancient history section',a:'C  Closed at the moment'},{l:'Art gallery',a:'D  Worth the extra cost'}],
+  options:['A  Too crowded at weekends','B  Best for children','C  Closed at the moment','D  Worth the extra cost','E  Free guided tours'],keepOrder:true}],
+ check:[{q:'“It’s money well spent” — какой вариант это перефразирует?',o:['Worth the extra cost','Free guided tours','Too crowded'],a:0},
+  {q:'Пункты (Science room, Art gallery…) звучат…',o:['по порядку','в случайном порядке'],a:0},
+  {q:'Можно ли использовать вариант дважды?',o:['Никогда','Смотрите инструкцию: “You may use any letter more than once”'],a:1}]},
+
+{id:'l-map',icon:'🗺️',title:'Map and plan labelling',where:'Part 2',
+ what:'План здания или карта с буквами. Нужно поставить букву для каждого названного места.',
+ order:'in',
+ steps:['Найдите вход (entrance) или «You are here» и стороны света.','Посмотрите, какие места уже подписаны, — это ориентиры.','Двигайтесь пальцем по карте вслед за говорящим.','Слушайте слова направления: on your left, opposite, beyond, at the end of.','Зачёркивайте использованные буквы.'],
+ format:['Пишите только букву.'],
+ traps:['«Opposite» — напротив, а не рядом.','Лево и право — с точки зрения идущего, а не того, кто смотрит на лист.','slightly beyond — чуть дальше ориентира.'],
+ practice:[{kind:'match',map:true,title:'Гид в парке.',
+  audio:[['Guide','Welcome to Greenfield Park. As you come in through the main entrance, the café is immediately on your left. Walk straight ahead to the fountain. The gift shop is slightly beyond the fountain, on your right. If you turn left at the fountain, you’ll find the toilets on that path, just below the car park.']],
+  instr:'Label the map. Choose A–E.',
+  rows:[{l:'Café',a:'D'},{l:'Gift shop',a:'A'},{l:'Toilets',a:'B'}],options:['A','B','C','D','E'],keepOrder:true},
+  {kind:'match',title:'Язык направлений: соедините фразу и значение.',
+  rows:[{l:'at the junction / intersection',a:'перекрёсток'},{l:'T-junction',a:'Т-образный перекрёсток'},{l:'roundabout',a:'круговое движение'},{l:'adjacent to',a:'непосредственно рядом'},{l:'slightly beyond',a:'немного дальше'},{l:'farther along',a:'дальше по той же улице'},{l:'runs parallel to',a:'идёт параллельно'},{l:'anticlockwise',a:'против часовой стрелки'}],
+  options:['перекрёсток','Т-образный перекрёсток','круговое движение','непосредственно рядом','немного дальше','дальше по той же улице','идёт параллельно','против часовой стрелки']}],
+ check:[{q:'Вы входите, и место “on your left”. На карте это…',o:['слева от идущего','всегда слева на листе'],a:0},
+  {q:'opposite =',o:['рядом','напротив'],a:1},{q:'С чего начинать работу с картой?',o:['С вопросов','С поиска входа и ориентиров'],a:1}],checkInline:true},
+
+{id:'l-part4',icon:'🎓',title:'Sentence completion and short answers',where:'Part 4 (лекция), Part 3',
+ what:'Конспект лекции или предложения с пропусками. Part 4 идёт без паузы — 10 вопросов подряд.',
+ order:'in',
+ steps:['Используйте время перед Part 4, чтобы прочитать все 10 вопросов.','Заголовки конспекта — карта лекции: по ним вы понимаете, где сейчас лектор.','Предскажите часть речи для каждого пропуска.','Проверьте, что ответ грамматически вписывается в предложение.','Пропустили — сразу переходите к следующему пункту.'],
+ format:['Соблюдайте лимит слов.','Единственное или множественное число — как прозвучало (earthworms ≠ earthworm).','Британский и американский спеллинг принимаются: fertiliser / fertilizer.'],
+ traps:['Лектор сначала называет популярное мнение (“Most people think…”), потом поправляет.','Звучат два похожих слова, а подходит одно — проверяйте по смыслу предложения.'],
+ practice:[{kind:'gap',title:'Отрывок лекции о микропластике.',
+  audio:[['Lecturer','Today I want to talk about microplastics in soil. Most people associate plastic pollution with the ocean, but farmland may actually contain even more of it. One major source is sewage sludge, which is spread on fields as fertiliser. Tiny fibres from our clothes are washed into the sludge during laundry. Early research suggests these particles can impair the growth of earthworms, and that, in turn, reduces the quality of the topsoil.']],
+  instr:'Write ONE WORD ONLY for each answer.',limit:{w:1,n:false,label:'ONE WORD ONLY'},
+  items:[{q:'Farmland may contain more microplastics than the ______.',a:['ocean']},{q:'Sewage sludge is spread on fields as ______.',a:['fertiliser','fertilizer']},{q:'Clothes release tiny ______ during washing.',a:['fibres','fibers']},{q:'The particles may harm the growth of ______.',a:['earthworms']}]}],
+ check:[{q:'Вы услышали earthworms, а написали earthworm. Засчитают?',o:DA,a:1,why:'Число должно совпадать.'},
+  {q:'fertilizer вместо fertiliser —',o:['ошибка','засчитают'],a:1},{q:'Part 4 — это…',o:['диалог','лекция без паузы'],a:1}],checkInline:true}
+];
+/* =============== READING lessons =============== */
+const HEADS=['i  A trend spreading across cities','ii  Why cities may suit bees','iii  Too many hives, too few flowers','iv  The risk of illness','v  A greener solution','vi  The high price of city honey','vii  Training courses for children'];
+const L_READ=[
+{id:'r-tfng',icon:'✅',title:'True / False / Not Given',where:'Identifying information',
+ what:'Сравните утверждение с текстом. TRUE — текст говорит то же самое. FALSE — текст говорит противоположное. NOT GIVEN — в тексте этой информации нет.',
+ order:'in',
+ steps:['Подчеркните в утверждении ключевые слова, особенно имена, числа, даты — их легко найти глазами.','Найдите место в тексте. Ответ 2 будет ниже ответа 1.','Прочитайте 2–3 предложения вокруг полностью и внимательно.','Сравните смысл, а не слова. Проверьте «ограничители»: all, some, only, always, never, most.','Спросите себя: текст говорит обратное? → FALSE. Текст молчит? → NOT GIVEN.'],
+ format:['Пишите полностью: TRUE, FALSE или NOT GIVEN. Сокращения T / F / NG — рискованно.','Не путайте с YES / NO: в этом задании YES будет ошибкой.'],
+ traps:['Совпадение слов ≠ TRUE.','Не используйте свои знания о мире — только текст.','all ↔ some, always ↔ sometimes — частая причина FALSE.','FALSE vs NOT GIVEN: FALSE — текст явно противоречит; NOT GIVEN — проверить нельзя.'],
+ practice:[{kind:'mcq',passage:'sleep',inline:true,instr:'Do the statements agree with the information in the text? Write TRUE, FALSE or NOT GIVEN.',
+  items:[{q:'Scientists used to think the brain was inactive during sleep.',o:TF3,a:0,why:'“a passive state in which the brain simply rested” = inactive.'},
+   {q:'A nap was more effective than a full night’s sleep.',o:TF3,a:1,why:'Текст: “similar, though smaller, benefits” — меньше, а не больше.'},
+   {q:'The word-list experiment took place at a British university.',o:TF3,a:2,why:'Где проходил эксперимент, не сказано.'},
+   {q:'Students who slept remembered about a fifth more words.',o:TF3,a:0,why:'20% = a fifth.'}]}],
+ check:[{q:'Текст: “Some students improved.” Утверждение: “All students improved.”',o:TF3,a:1},
+  {q:'Утверждение о цене, а в тексте о цене ничего нет.',o:TF3,a:2},
+  {q:'Можно ли ответить на TFNG, используя знания о мире?',o:['Да','Нет, только текст'],a:1}],checkInline:true},
+
+{id:'r-ynng',icon:'💬',title:'Yes / No / Not Given',where:'Identifying writer’s views or claims',
+ what:'То же, что TFNG, но про мнение автора, а не про факты. YES — автор так считает. NO — автор считает обратное. NOT GIVEN — автор об этом не высказывался.',
+ order:'in',
+ steps:['Ищите слова мнения: in my view, I believe, clearly, hardly, unfortunately, of course.','Отделите факты, которые автор пересказывает, от его собственной оценки.','Сравните утверждение с позицией автора.'],
+ format:['Пишите YES, NO или NOT GIVEN — не TRUE / FALSE.'],
+ traps:['Автор может привести чужое мнение (“Critics say…”) и не согласиться с ним.','“hardly a reason” = совсем не причина: это отрицание.'],
+ practice:[{kind:'mcq',passage:'sleep',inline:true,instr:'Do the statements agree with the views of the writer? Write YES, NO or NOT GIVEN.',
+  items:[{q:'Schools that keep early start times are ignoring research.',o:YN3,a:0,why:'“are ignoring clear scientific evidence”.'},
+   {q:'Changing school start times would be expensive.',o:YN3,a:1,why:'Автор: “a simple, inexpensive change”.'},
+   {q:'Most parents support later start times.',o:YN3,a:2,why:'Об отношении родителей к реформе автор не пишет.'},
+   {q:'Problems for parents are a good reason to keep early starts.',o:YN3,a:1,why:'“these are hardly a reason” = это не причина.'}]}],
+ check:[{q:'Задание YES / NO / NOT GIVEN, а вы написали TRUE.',o:['Засчитают','Не засчитают'],a:1},
+  {q:'“Critics claim X, but this is clearly wrong.” Автор считает X верным?',o:YN3,a:1}],checkInline:true},
+
+{id:'r-mcq',icon:'🔘',title:'Multiple choice',where:'Один ответ из A–D или несколько из списка',
+ what:'Вопрос или начало предложения и 4 варианта. Иногда нужно выбрать 2–3 варианта из длинного списка.',
+ order:'in',
+ steps:['Прочитайте только вопрос, без вариантов, и найдите место в тексте.','Сформулируйте ответ своими словами.','Теперь сравните с вариантами: исключите те, что противоречат тексту или не упоминаются.','Правильный вариант почти всегда перефразирован.'],
+ format:['Пишите только букву.'],
+ traps:['Вариант со словами из текста, но с другим смыслом.','Вариант, который верен «в жизни», но не сказан в тексте.'],
+ practice:[{kind:'mcq',passage:'sleep',closed:true,instr:'Choose the correct letter, A, B, C or D.',
+  items:[{q:'According to the text, during deep sleep the brain',o:['A  rests completely.','B  moves information into long-term memory.','C  forgets unimportant words.','D  prepares for the next day’s lessons.'],a:1,why:'“transfers it from short-term to long-term memory”.'},
+   {q:'The writer suggests that teenagers’ lack of sleep may mainly be caused by',o:['A  smartphones.','B  homework.','C  school start times.','D  parents’ schedules.'],a:2,why:'“Smartphones are often blamed, but school start times may matter more”. A — ловушка: слово есть в тексте.'}]}],
+ check:[{q:'Вариант содержит те же слова, что и текст. Значит…',o:['он точно верный','проверьте смысл — это может быть ловушка'],a:1},
+  {q:'Что читать первым?',o:['Варианты A–D','Вопрос без вариантов'],a:1}]},
+
+{id:'r-head',icon:'🏷️',title:'Matching headings',where:'Заголовки i–x к абзацам',
+ what:'Подберите заголовок к каждому абзацу. Заголовков больше, чем абзацев. Заголовок передаёт главную мысль всего абзаца.',
+ order:'not',orderNote:'Но абзацы идут по порядку, поэтому делайте это задание первым: оно даёт карту текста.',
+ steps:['Не смотрите на заголовки сначала.','Прочитайте абзац целиком, особенно первое и последнее предложение.','Напишите свой заголовок в 3–5 словах.','Теперь прочитайте список заголовков и подчеркните ключевые слова.','Сопоставьте очевидные, затем разберите оставшиеся.','Если сомневаетесь между двумя, спросите: какой из них про ВЕСЬ абзац?'],
+ format:['Пишите римскую цифру: i, iv, vii — не текст заголовка.','Заголовок из примера в инструкции сразу вычеркните.'],
+ traps:['Заголовок с тем же словом, что и в абзаце, часто ловушка: он про деталь, а не главную мысль.','Абзац, начинающийся с However, обычно меняет тему.'],
+ practice:[{kind:'match',passage:'bees',instr:'Choose the correct heading for each paragraph from the list (two are extra).',
+  rows:[{l:'Paragraph A',a:HEADS[0]},{l:'Paragraph B',a:HEADS[1]},{l:'Paragraph C',a:HEADS[2]},{l:'Paragraph D',a:HEADS[3]},{l:'Paragraph E',a:HEADS[4]}],options:HEADS,keepOrder:true}],
+ check:[{q:'Заголовок должен передавать…',o:['главную мысль абзаца','любую деталь из абзаца'],a:0},
+  {q:'Что писать в бланке?',o:['Текст заголовка','Римскую цифру'],a:1},
+  {q:'Заголовок vi “The high price of city honey” — почему он ловушка для абзаца A?',o:['В абзаце есть слово honey, но о цене не говорится','Он подходит идеально'],a:0}]},
+
+{id:'r-info',icon:'🔎',title:'Matching information',where:'В каком абзаце есть…',
+ what:'Найдите абзац, в котором есть конкретная информация: пример, сравнение, причина, упоминание, число.',
+ order:'not',orderNote:'Ответы разбросаны по тексту, поэтому делайте это задание последним.',
+ steps:['Делайте последним: к этому времени вы уже знаете текст.','Определите тип информации: an example of, a comparison, a reason for, a reference to.','Начните с утверждений с именами и числами — их легче найти.','Перефразируйте утверждение своими словами.','Сканируйте синонимы и проверяйте.'],
+ format:['Пишите букву абзаца.','NB You may use any letter more than once — один абзац может быть ответом несколько раз.'],
+ traps:['Это деталь, а не главная мысль абзаца, — заголовок абзаца здесь не поможет.'],
+ practice:[{kind:'match',passage:'bees',instr:'Which paragraph, A–E, contains the following information?',
+  rows:[{l:'a reference to a lack of training',a:'D'},{l:'a comparison between city and countryside honey production',a:'B'},{l:'an example of businesses promoting a product',a:'A'},{l:'a mention of action taken by local authorities',a:'E'}],options:['A','B','C','D','E'],keepOrder:true}],
+ check:[{q:'Можно ли одну букву абзаца использовать дважды?',o:['Если в инструкции есть NB — да','Никогда'],a:0},
+  {q:'Когда делать Matching Information?',o:['Первым','Последним'],a:1}],checkInline:true},
+
+{id:'r-feat',icon:'👤',title:'Matching features',where:'Утверждения ↔ люди, даты, места',
+ what:'Соедините утверждения или открытия с людьми (учёными), датами или организациями из списка.',
+ order:'not',
+ steps:['Обведите все имена в тексте — их легко найти.','Прочитайте всё, что сказано о каждом человеке: имя может встречаться несколько раз.','Начните с уникальных имён, которые встречаются один раз.','Сопоставьте и исключите.'],
+ format:['Пишите букву. Варианты могут использоваться больше одного раза.'],
+ traps:['Учёный может пересказывать чужую идею — проверьте, чья это мысль.','Фамилия может появиться позже без имени: “Marsh also found…”.'],
+ practice:[{kind:'match',passage:'bees',closed:true,instr:'Match each statement with the correct person: A Helen Marsh, B Liam O’Connor, C Ana Ruiz.',
+  rows:[{l:'Many new beekeepers lack proper preparation.',a:'C  Ana Ruiz'},{l:'Urban hives can be more productive than rural ones.',a:'A  Helen Marsh'},{l:'Wild bees may suffer because of honeybees.',a:'B  Liam O’Connor'}],options:['A  Helen Marsh','B  Liam O’Connor','C  Ana Ruiz'],keepOrder:true}],
+ check:[{q:'С каких имён начинать?',o:['С уникальных, которые встречаются один раз','С самых частых'],a:0}]},
+
+{id:'r-end',icon:'🧩',title:'Matching sentence endings',where:'Начало предложения + окончание A–F',
+ what:'Закончите каждое предложение подходящим вариантом из списка. Вариантов больше, чем предложений.',
+ order:'in',
+ steps:['Найдите место в тексте по ключевым словам начала предложения.','Подумайте, как оно должно закончиться по смыслу текста.','Проверьте грамматику: окончание должно грамматически подходить.','Исключите варианты, верные по тексту, но про другое.'],
+ format:['Пишите только букву.'],
+ traps:['Окончание может быть грамматически верным, но не соответствовать тексту.'],
+ practice:[{kind:'match',passage:'bees',closed:true,instr:'Complete each sentence with the correct ending, A–E.',
+  rows:[{l:'Urban areas are often free of',a:'C  chemicals used on farms.'},{l:'Wild bee species may',a:'A  be pushed out by honeybees.'},{l:'Amateur keepers may fail to',a:'B  notice early signs of disease.'}],
+  options:['A  be pushed out by honeybees.','B  notice early signs of disease.','C  chemicals used on farms.','D  receive training from councils.','E  grow wildflowers on rooftops.'],keepOrder:true}],
+ check:[{q:'Окончание подходит грамматически. Этого достаточно?',o:['Да','Нет, ещё и по смыслу текста'],a:1}]},
+
+{id:'r-sent',icon:'✏️',title:'Sentence completion',where:'Пропуск в предложении, слова из текста',
+ what:'Дополните предложение словами из текста в пределах лимита.',
+ order:'in',
+ steps:['Обведите лимит слов.','Найдите место в тексте по ключевым словам.','Возьмите слова из текста без изменений.','Перечитайте предложение с вашим ответом: оно грамматически верно?'],
+ format:['Слова — точно как в тексте, без изменения формы: body clocks, а не body clock.','Числа можно писать цифрами.','NO MORE THAN TWO WORDS AND/OR A NUMBER = до 2 слов и 1 число.','Слово через дефис — одно слово.'],
+ traps:['Лишний артикль превышает лимит.','Перефразировать ответ своими словами нельзя.'],
+ practice:[{kind:'gap',passage:'sleep',closed:true,instr:'Write NO MORE THAN TWO WORDS AND/OR A NUMBER from the text.',limit:{w:2,n:true,label:'TWO WORDS AND/OR A NUMBER'},
+  items:[{q:'Experts recommend that teenagers sleep ______ a night.',a:['nine hours','9 hours']},{q:'A nap of ______ minutes can also improve memory.',a:['60-90']},{q:'Adolescents’ ______ naturally shift later.',a:['body clocks']}]}],
+ check:[{q:'В тексте body clocks, вы написали body clock.',o:['Засчитают','Не засчитают'],a:1},
+  {q:'Лимит TWO WORDS. Ответ “the body clocks”.',o:['Засчитают','Не засчитают'],a:1,why:'Три слова вместе с артиклем.'}],checkInline:true},
+
+{id:'r-sum',icon:'📋',title:'Summary, note, table, flow-chart completion',where:'Пересказ части текста с пропусками',
+ what:'Краткий пересказ, конспект, таблица или схема с пропусками. Два вида: слова берёте из текста, или выбираете из рамки с вариантами.',
+ order:'mixed',orderNote:'Обычно по порядку, но часто относится только к одной части текста.',
+ steps:['Прочитайте summary целиком и поймите, какую часть текста она пересказывает.','Для каждого пропуска определите часть речи: существительное, прилагательное, глагол.','С рамкой: слова в рамке — синонимы слов из текста.','Без рамки: слова из текста без изменений и в пределах лимита.'],
+ format:['С рамкой — пишите букву или слово, как сказано в инструкции.','Без рамки — соблюдайте лимит слов.'],
+ traps:['В рамке есть слова, подходящие грамматически, но не по смыслу.'],
+ practice:[{kind:'match',passage:'bees',closed:true,instr:'Complete the summary using words from the box.',
+  rows:[{l:'City beekeeping has become (1) ______ in recent years.',a:'fashionable'},{l:'Cities offer many flowers and few (2) ______.',a:'pesticides'},{l:'Too many hives can leave bees without enough (3) ______.',a:'food'},{l:'(4) ______ can spread quickly between hives.',a:'disease'}],
+  options:['fashionable','pesticides','food','disease','honey','training','expensive','rooftops']}],
+ check:[{q:'Слова в рамке обычно…',o:['точно как в тексте','синонимы слов из текста'],a:1},
+  {q:'Первый шаг в summary completion?',o:['Прочитать summary целиком','Сразу искать первый пропуск'],a:0}]},
+
+{id:'r-short',icon:'❓',title:'Short-answer questions',where:'Вопрос What / Which / When…',
+ what:'Короткий вопрос, ответ — слова из текста в пределах лимита.',
+ order:'in',
+ steps:['Определите вопросительное слово: When → время, Who → человек, How many → число.','Найдите место по ключевым словам вопроса.','Ответ — слова из текста, без лишних слов.'],
+ format:['Не пишите полное предложение — только ответ.','Соблюдайте лимит слов.'],
+ practice:[{kind:'gap',passage:'sleep',closed:true,instr:'Answer with NO MORE THAN TWO WORDS AND/OR A NUMBER from the text.',limit:{w:2,n:true,label:'TWO WORDS AND/OR A NUMBER'},
+  items:[{q:'Which stage of sleep is linked to long-term memory?',a:['deep sleep']},{q:'At what time do many schools start?',a:['8 a.m','8 am','8am','8','8.00','8:00','8.00 a.m','8 a.m']},{q:'What is often blamed for teenagers’ lack of sleep?',a:['smartphones']}]}],
+ check:[{q:'Вопрос “When…?” — ответ скорее всего…',o:['время или дата','имя'],a:0},
+  {q:'Писать ли ответ полным предложением?',o:['Да','Нет, только слова ответа'],a:1}],checkInline:true}
+];
+/* =============== WRITING lessons =============== */
+const L_WRITE=[
+{id:'w-t1',icon:'📊',title:'Task 1: структура и overview',where:'Графики, таблицы, диаграммы, процессы, карты',
+ what:'Опишите данные графика минимум в 150 словах за ~20 минут. Не нужно своё мнение и выводы — только описание и сравнение главного.',
+ stepsTitle:'Пошагово (пирамида)',
+ steps:['Прочитайте задание и поймите, зачем сделан график: что сравнивают и за какой период.','Разделите информацию на группы (chunks) и найдите важные сравнения.','Introduction: перефразируйте вопрос одним предложением.','Overview: 2–4 главные черты, без цифр. Представьте, что пишете заголовок новости.','Details 1 и Details 2: подробности о главных чертах с цифрами и сравнениями.','Оставьте 2 минуты на проверку.'],
+ formatTitle:'Важно',
+ format:['Без overview высокий балл невозможен. Его можно поставить после введения или в конце.','Static data — один момент времени (сравниваем). Dynamic data — изменения во времени (описываем тренды).','Не описывайте каждую цифру: выбирайте главное.','Используйте приблизительные значения: around, just over, approximately.'],
+ traps:['Своё мнение или объяснение причин: “because people prefer cars”.','Копирование вопроса слово в слово.','Цифры в overview.'],
+ practice:[{kind:'order',title:'Расставьте части ответа на бар-чарт в правильном порядке.',items:['The bar chart illustrates how much money France and the UK spent on five types of consumer goods in 2010.','Overall, the UK spent more than France, and cars were the biggest expense in both countries.','In terms of cars, the UK spent around £450,000 on them, as opposed to exactly £400,000 in France.','The expenditure on books was also higher in the UK than in France.'],msg:'Introduction → overview → details 1 → details 2.'},
+  {kind:'mcq',inline:true,title:'Overview или деталь?',items:[{q:'Overall, the UK spent more than France on consumer goods.',o:['Overview','Detail'],a:0},{q:'The UK spent around £450,000 on cars.',o:['Overview','Detail'],a:1,why:'Есть цифра — значит деталь.'},{q:'In both countries, cars were the largest expense.',o:['Overview','Detail'],a:0},{q:'Spending on books in France was slightly lower than in the UK.',o:['Overview','Detail'],a:1}]},
+  {kind:'mcq',inline:true,title:'Static или dynamic?',items:[{q:'A pie chart of energy sources in 2015',o:['Static','Dynamic'],a:0,why:'Один момент — сравниваем доли.'},{q:'A line graph of car sales from 1990 to 2020',o:['Static','Dynamic'],a:1,why:'Изменения во времени: rose, fell, peaked.'},{q:'A table of US fish imports in 1988, 1992 and 2000',o:['Static','Dynamic'],a:1},{q:'A bar chart comparing five countries in 2010',o:['Static','Dynamic'],a:0}]}],
+ check:[{q:'Нужен ли в Task 1 вывод со своим мнением?',o:['Да','Нет, нужен overview'],a:1},{q:'Что НЕ должно быть в overview?',o:['Главные тренды','Конкретные цифры'],a:1},{q:'Минимум слов в Task 1?',o:['150','250'],a:0}],checkInline:true},
+
+{id:'w-para',icon:'🔁',title:'Task 1: парафраз введения',where:'Introduction',
+ what:'Введение — это вопрос своими словами. Меняйте глаголы, существительные и структуру предложения.',
+ stepsTitle:'Три способа парафраза',
+ steps:['Синонимы: shows → illustrates / gives information about.','Другая часть речи: how much money was spent → the expenditure on.','Другая структура: the number of… → how many…; the proportion of fish from China → the share of fish sourced from China.'],
+ extraTitle:'Готовые замены из конспекта',
+ extra:'<div class="wordlist"><span><b>shows</b> → illustrates, presents</span><span><b>money made from sales</b> → revenue</span><span><b>money spent</b> → expenditure</span><span><b>the proportion of</b> → the distribution of</span><span><b>by origin</b> → by source</span><span><b>the process of</b> → the steps involved in</span><span><b>such as</b> → namely, including</span><span><b>for drinking</b> → for later drinking purposes</span></div>',
+ practice:[{kind:'deck',key:'para',title:'Прочитайте фразу, скажите парафраз вслух, переверните.',cards:[{f:'shows',b:'illustrates / gives information about / presents'},{f:'the amount of money made from sales',b:'revenue'},{f:'how much money was spent',b:'the expenditure on'},{f:'the proportion of',b:'the distribution of / the share of'},{f:'by origin',b:'by source'},{f:'the process of',b:'the steps involved in / the method of'},{f:'for drinking',b:'for later drinking purposes / for use as drinking water'},{f:'stages in the life of a frog',b:'the phases a frog passes through during its lifetime'},{f:'including',b:'namely / such as'},{f:'between 2000 and 2020',b:'over a twenty-year period'}]},
+  {kind:'mcq',title:'Выберите лучший парафраз введения.',items:[{q:'Question: “The chart shows the amount of money made from sales in a coffee shop in 2000 and 2020.”',o:['The chart shows the amount of money made from sales in a coffee shop.','The bar chart illustrates the revenue of a coffee shop in two years, 2000 and 2020.','The coffee shop made a lot of money.'],a:1,why:'Синонимы + та же информация. A — копия, C — вывод вместо описания.'}]}],
+ check:[{q:'“the amount of money made from sales” =',o:['expenditure','revenue'],a:1},{q:'“money spent” =',o:['expenditure','revenue'],a:0}],checkInline:true},
+
+{id:'w-lang',icon:'📈',title:'Task 1: язык трендов и сравнений',where:'Details',
+ what:'Для dynamic data нужны глаголы изменения и наречия силы; для static — язык сравнений.',
+ extraTitle:'Язык',
+ extra:'<div class="wordlist"><span><b>↑</b> rise, increase, grow, climb</span><span><b>↓</b> fall, decrease, decline, drop</span><span><b>↕</b> fluctuate</span><span><b>→</b> remain stable, level off</span><span><b>пик</b> peak at, reach a high of</span><span><b>сила</b> dramatically, sharply, significantly, steadily, gradually, slightly</span><span><b>сравнение</b> twice as much as, the highest, whereas, compared to</span><span><b>порядок</b> respectively</span></div>',
+ practice:[{kind:'mcq',inline:true,title:'Выберите правильный вариант.',items:[{q:'The price rose from $2 ___ $5.',o:['to','by','at'],a:0,why:'from… to… — начальная и конечная точка.'},{q:'Sales increased ___ 20% (на 20%).',o:['to','by','at'],a:1,why:'by — величина изменения.'},{q:'The figure peaked ___ 80 in 2010.',o:['to','by','at'],a:2},{q:'Rapid rise from 10 to 90 in one year:',o:['rose slightly','rose dramatically','remained stable'],a:1},{q:'49%',o:['just under half','just over half'],a:0},{q:'26%',o:['roughly a quarter','about a third'],a:0},{q:'The UK and France spent £450,000 and £400,000 ___.',o:['respectively','relatively'],a:0}]}],
+ check:[{q:'“increased by 10%” означает…',o:['выросло до 10%','выросло на 10%'],a:1},{q:'Какое слово для небольшого изменения?',o:['dramatically','slightly'],a:1}],checkInline:true},
+
+{id:'w-t2type',icon:'🧭',title:'Task 2: типы эссе',where:'250+ слов, ~40 минут',
+ what:'Сначала определите тип вопроса — от него зависит структура. Ответ не на тот вопрос сильно снижает Task Response.',
+ stepsTitle:'Пять типов',
+ steps:['Opinion: “To what extent do you agree or disagree?” — ваша чёткая позиция через всё эссе.','Discussion: “Discuss both views and give your own opinion.” — оба взгляда + ваше мнение.','Advantages / disadvantages: “Do the advantages outweigh the disadvantages?” — сравните и решите.','Problem / solution: “What are the causes? What can be done?” — причины и решения.','Two-part question: два прямых вопроса — ответьте на каждый.'],
+ practice:[{kind:'mcq',title:'Определите тип задания.',items:[{q:'Some people think university should be free. To what extent do you agree or disagree?',o:['Opinion','Discussion','Problem / solution'],a:0},{q:'Some say children should start school early, others think later is better. Discuss both views and give your opinion.',o:['Opinion','Discussion','Two-part'],a:1},{q:'Traffic in cities is increasing. What are the causes, and what can be done?',o:['Advantages / disadvantages','Problem / solution','Opinion'],a:1},{q:'More people work from home. Do the advantages outweigh the disadvantages?',o:['Advantages / disadvantages','Discussion','Two-part'],a:0},{q:'Why do people move to cities? Is this a positive development?',o:['Two-part question','Opinion','Discussion'],a:0}]}],
+ check:[{q:'В Discussion нужно своё мнение?',o:['Да, если просят “give your own opinion”','Нет никогда'],a:0},{q:'Task 2 весит…',o:['столько же, сколько Task 1','вдвое больше Task 1'],a:1}]},
+
+{id:'w-t2struct',icon:'🧱',title:'Task 2: структура эссе',where:'4–5 абзацев',
+ what:'Классическая структура: введение, два основных абзаца, заключение. Каждый основной абзац — одна идея, развитая полностью.',
+ stepsTitle:'Структура',
+ steps:['Introduction: перефраз темы + thesis (ваш ответ на вопрос).','Body 1: главная мысль → объяснение → пример.','Body 2: вторая мысль → объяснение → пример.','Conclusion: повторите позицию другими словами. Без новых идей.'],
+ format:['Пишите предложения из 2–3 частей: which, because, although.','Пассив делает стиль формальнее: It is often argued that…','Обязательно пишите заключение.'],
+ traps:['Позиция меняется в середине эссе.','Новая идея в заключении.','Заученные длинные фразы, не связанные с вопросом.'],
+ extraTitle:'Связки',
+ extra:'<div class="wordlist"><span><b>добавить</b> Furthermore, In addition, Moreover</span><span><b>противопоставить</b> However, On the other hand, Whereas</span><span><b>пример</b> For instance, To illustrate</span><span><b>результат</b> As a result, Therefore, Thereby</span><span><b>мнение</b> In my view, I would argue that</span><span><b>итог</b> In conclusion, Overall</span></div>',
+ practice:[{kind:'order',title:'Соберите основной абзац в правильном порядке (point → explain → example → link).',items:['One major advantage of working from home is the time saved on commuting.','Without a daily journey to the office, employees can use those hours for rest or family.','For instance, a worker who travels an hour each way gains ten extra hours a week.','As a result, remote employees often report lower stress levels.'],msg:'Point → explanation → example → result.'}],
+ check:[{q:'Можно ли в заключении добавить новую идею?',o:['Да','Нет'],a:1},{q:'Где в эссе ваш thesis?',o:['Во введении','Только в заключении'],a:0},{q:'Минимум слов в Task 2?',o:['150','250'],a:1}],checkInline:true}
+];
+
+/* =============== SPEAKING lessons =============== */
+const CUES=['Describe a book you enjoyed reading.\nYou should say: what the book was, when you read it, what it was about,\nand explain why you enjoyed it.','Describe a place in your city that you like to visit.\nYou should say: where it is, how often you go there, what you do there,\nand explain why you like it.','Describe a skill you learned recently.\nYou should say: what the skill is, how you learned it, how long it took,\nand explain how it has helped you.','Describe a time you helped someone.\nYou should say: who you helped, what the problem was, what you did,\nand explain how you felt about it.','Describe a piece of technology you use every day.\nYou should say: what it is, when you got it, what you use it for,\nand explain why it is important to you.'];
+const QS=['Do you prefer studying alone or with other people?','Is it important to learn a foreign language?','Should children have their own mobile phones?','What makes a good teacher?','Do people read less than they did in the past?','Is it better to live in a city or in the countryside?','How has technology changed the way people shop?','Should schools teach cooking?','Do you think people work too much nowadays?'];
+const L_SPEAK=[
+{id:'s-p1',icon:'1️⃣',title:'Part 1: вопросы о вас',where:'4–5 минут',
+ what:'Экзаменатор задаёт простые вопросы о вас: учёба, работа, дом, хобби. Цель — показать, что вы свободно говорите на обычные темы.',
+ stepsTitle:'Формула ответа',
+ steps:['Ответьте прямо: Yes, I do / Not really.','Добавьте причину: because…','Добавьте деталь или пример. Итого 2–3 предложения.'],
+ format:['Не заучивайте ответы: экзаменатор это слышит.','Не знаете, что сказать? “I’ve never really thought about it, but…”','Слишком коротко (“Yes.”) — плохо, слишком длинно и не по теме — тоже.'],
+ practice:[{kind:'mcq',title:'Какой ответ лучше?',items:[{q:'Do you like reading?',o:['Yes.','Yes, I do, especially detective stories, because they keep me guessing until the very end.','Reading is an important aspect of human life and many people in the modern world…'],a:1,why:'Прямой ответ + что именно + почему.'},{q:'Where do you live?',o:['Astana.','I live in Astana, in a fairly new district near the river, which is great for evening walks.','Well, living is a complex concept…'],a:1}]}],
+ check:[{q:'Сколько предложений обычно достаточно в Part 1?',o:['1 слово','2–3 предложения','2 минуты'],a:1}]},
+
+{id:'s-p2',icon:'2️⃣',title:'Part 2: карточка (long turn)',where:'1 минута подготовки, 1–2 минуты речи',
+ what:'Вы получаете карточку с темой и пунктами. Готовитесь минуту (можно делать заметки) и говорите до 2 минут без остановки.',
+ stepsTitle:'Как готовиться за минуту',
+ steps:['Запишите по 2–3 ключевых слова на каждый пункт, не предложения.','Решите, в каком времени говорить (часто прошедшее).','Пройдите все пункты по порядку — это готовый план.','Больше всего времени — на последний пункт “explain why”: там раскрываются чувства и причины.','Если закончили раньше — добавьте пример или сравнение, пока экзаменатор не остановит.'],
+ traps:['Остановиться через 40 секунд.','Пропустить пункт карточки.'],
+ practice:[{kind:'html',title:'Тренажёр: возьмите карточку, готовьтесь 1 минуту, затем говорите 2 минуты (лучше с записью на телефон).',
+  html:'<p class="quote cue" style="white-space:pre-line"></p><div class="row"><button class="newc">Другая карточка</button><button class="primary go">Начать подготовку</button><span class="big clk" aria-live="polite"></span></div><label class="f">Заметки (ключевые слова)</label><textarea class="notes" placeholder="book: … / when: … / about: … / why: …"></textarea>',
+  init(b){let i=Math.floor(Math.random()*CUES.length),t=null;const cue=$('.cue',b),clk=$('.clk',b),go=$('.go',b);const show=()=>{cue.textContent=CUES[i];$('.notes',b).value=''};show();
+   $('.newc',b).onclick=()=>{i=(i+1)%CUES.length;show()};
+   const run=(sec,label,then)=>{const end=Date.now()+sec*1000;clearInterval(t);t=setInterval(()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));clk.textContent=label+' '+fmt(s);if(s===0){clearInterval(t);t=null;beep();then()}},250)};
+   go.onclick=()=>{if(t){clearInterval(t);t=null;clk.textContent='';go.textContent='Начать подготовку';return}go.textContent='Стоп';run(60,'Подготовка',()=>run(120,'Говорите!',()=>{clk.textContent='Время вышло';go.textContent='Начать подготовку'}))};}}],
+ check:[{q:'Что записывать за минуту подготовки?',o:['Полные предложения','Ключевые слова по каждому пункту'],a:1},{q:'Закончили через 1 минуту. Что делать?',o:['Молчать','Добавить пример или сравнение'],a:1}]},
+
+{id:'s-p3',icon:'3️⃣',title:'Part 3: обсуждение и PREP',where:'4–5 минут',
+ what:'Абстрактные вопросы по теме Part 2: общество, причины, будущее. Нужны развёрнутые аргументированные ответы.',
+ stepsTitle:'PREP',
+ steps:['Point — ваша мысль: I’d say that… / In my view…','Reason — причина: This is mainly because…','Example — пример: For instance… / Take my own experience…','Point — повтор мысли: So, all in all… / That’s why I believe…'],
+ format:['Говорите о людях в целом, а не только о себе.','Используйте сложные предложения: which, because, whenever, although.','Можно взять паузу: “That’s an interesting question. Let me think…”'],
+ extraTitle:'Связки для длинных предложений',
+ extra:'<div class="linker"><b>which</b><span>I live near a park, which is perfect for running.</span><b>because</b><span>I prefer studying at night because it’s quieter.</span><b>whenever</b><span>Whenever I feel stressed, I listen to podcasts.</span><b>although</b><span>Although cities are noisy, they offer more jobs.</span></div>',
+ practice:[{kind:'order',title:'Расставьте PREP-ответ из конспекта.',items:['Bags are essential items in our lives.','They help us carry our belongings for different purposes.','For instance, I use different bags for work, the gym and travelling.','So bags are truly versatile tools that make our life easier.'],msg:'Point → Reason → Example → Point.'},
+  {kind:'html',title:'PREP-конструктор: план из нескольких слов, затем ответ вслух за минуту.',
+   html:'<p class="big sq"></p><div class="row"><button class="nq">Другой вопрос</button><button class="primary tm">Таймер 1 минута</button><span class="big ck" aria-live="polite"></span></div><div class="prep-box"><b>Point</b><textarea aria-label="Point"></textarea></div><div class="prep-box"><b>Reason</b><textarea aria-label="Reason"></textarea></div><div class="prep-box"><b>Example</b><textarea aria-label="Example"></textarea></div><div class="prep-box"><b>Point again</b><textarea aria-label="Point again"></textarea></div><div class="row"><button class="jn">Показать ответ целиком</button><button class="rd">Прочитать вслух</button></div><p class="quote out" hidden></p>',
+   init(b){let qi=Math.floor(Math.random()*QS.length),t=null;const tas=$$('textarea',b),out=$('.out',b);const sh=()=>{$('.sq',b).textContent=QS[qi];tas.forEach(x=>x.value='');out.hidden=true};sh();
+    $('.nq',b).onclick=()=>{qi=(qi+1)%QS.length;sh()};
+    $('.tm',b).onclick=()=>{if(t){clearInterval(t);t=null;$('.ck',b).textContent='';return}const end=Date.now()+60000;t=setInterval(()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));$('.ck',b).textContent=fmt(s);if(s===0){clearInterval(t);t=null;beep();$('.ck',b).textContent='Время!'}},250)};
+    const j=()=>tas.map(x=>x.value.trim()).filter(Boolean).join(' ');
+    $('.jn',b).onclick=()=>{out.hidden=false;out.textContent=j()||'Заполните хотя бы одну часть.'};
+    $('.rd',b).onclick=()=>{const s=j();out.hidden=false;if(!s){out.textContent='Заполните хотя бы одну часть.';return}if(!speak(s,0.95))out.textContent='Браузер не умеет читать вслух. Прочитайте сами и запишите на телефон.'};}}],
+ check:[{q:'Что идёт после Reason в PREP?',o:['Point','Example'],a:1},{q:'В Part 3 лучше говорить…',o:['только о себе','о людях и обществе в целом, с примерами'],a:1}]}
+];
+/* =============== render lessons =============== */
+renderLessons($('#lessons-listening'),L_LISTEN,'listening');
+renderLessons($('#lessons-reading'),L_READ,'reading');
+renderLessons($('#lessons-writing'),L_WRITE,'writing');
+renderLessons($('#lessons-speaking'),L_SPEAK,'speaking');
+
+/* =============== FORMAT quiz =============== */
+mcq($('#fmtQuiz'),[
+  {q:'NO MORE THAN TWO WORDS. Ответ: “the river bank”.',o:DA,a:1,why:'Три слова вместе с артиклем.'},
+  {q:'ONE WORD AND/OR A NUMBER. Ответ: “15 March”.',o:DA,a:0,why:'Одно слово и одно число.'},
+  {q:'В тексте “children”, вы написали “child”.',o:DA,a:1,why:'Форма слова должна совпадать с текстом.'},
+  {q:'В записи британское “colour”, вы написали “color”.',o:DA,a:0,why:'Американский спеллинг принимается.'},
+  {q:'Задание TRUE / FALSE / NOT GIVEN. Ответ: “YES”.',o:DA,a:1,why:'Это другой набор ответов.'},
+  {q:'Весь бланк заполнен ЗАГЛАВНЫМИ буквами.',o:DA,a:0},
+  {q:'NO MORE THAN TWO WORDS. Ответ: “well-known writer”.',o:DA,a:0,why:'Слово через дефис считается одним.'},
+  {q:'Ответ: “acommodation”.',o:DA,a:1,why:'Ошибка в спеллинге: accommodation.'},
+  {q:'ONE WORD AND/OR A NUMBER. Ответ “twelve” вместо “12”.',o:DA,a:0,why:'Засчитают, но цифры быстрее и надёжнее.'},
+  {q:'Matching headings. Вместо “ii” вы переписали текст заголовка.',o:DA,a:1,why:'Пишите номер заголовка.'}
+],true,(sc,mx)=>report('format/quiz',sc,mx));
+
+/* =============== PLAN =============== */
+const TIPS=['Always read ahead в Listening: следующие вопросы важнее перепроверки.','Reading: не скорость, а контроль. Читайте с целью.','Matching Headings — первым, Matching Information — последним.','Task 1 без overview не получит высокий балл.','Пишите ответы ЗАГЛАВНЫМИ — регистр не будет проблемой.','Разбирайте каждую ошибку: спеллинг, парафраз или пропущенная деталь?','Speaking: Point, Reason, Example, Point.','IELTS — тест на синонимы. Учите слова тематическими группами.','Writing: сначала Task 2, потом Task 1.','Переносите ответы Reading после каждого текста.','Читайте на английском для удовольствия, без таймера.','Думайте на английском пять минут в день.','TRUE / FALSE / NOT GIVEN ≠ YES / NO / NOT GIVEN.','Лимит слов важнее смысла: лишний артикль — 0 баллов.'];
+const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
+$('#dailyTip').textContent=TIPS[doy%TIPS.length];
+
+const ex=$('#examDate');
+ex.value=S.get('exam','');
+function countdown(){
+  const v=ex.value,o=$('#daysLeft');
+  if(!v){o.textContent='Укажите дату экзамена';return}
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=Math.round((new Date(v+'T00:00:00')-today)/864e5);
+  o.textContent=d>1?`Осталось дней: ${d}`:d===1?'Завтра. Выспитесь.':d===0?'День экзамена. Удачи!':'Эта дата прошла';
+}
+ex.onchange=()=>{S.set('exam',ex.value);countdown()};countdown();
+
+const SECN={listening:'Listening',reading:'Reading',writing:'Writing',speaking:'Speaking'};
+function secProgress(){
+  $('#secProg').innerHTML=Object.keys(SECN).map(k=>{const L=ALL[k]||[];const n=L.filter(x=>done.has(x.id)).length;return `<div class="secprog"><button type="button" class="link" data-v="${k}" style="text-align:left;padding:0">${SECN[k]}</button><div class="bar"><i style="width:${L.length?n/L.length*100:0}%"></i></div><span class="small">${n} / ${L.length}</span></div>`}).join('');
+}
+secProgress();
+
+function warm(){
+  const pool=[];
+  Object.values(ALL).forEach(ls=>ls.forEach(L=>(L.check||[]).forEach(c=>pool.push(Object.assign({},c,{tag:L.title})))));
+  mcq($('#warmup'),shuffle(pool).slice(0,5));
+}
+warm();$('#warmNew').onclick=warm;
+
+const DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const DEFAULT_TASKS=['Один тип задания: урок + практика','Записать все ошибки','10 новых слов в карточки','Listening: подкаст 20 минут','Writing: Task 1 или Task 2','Speaking: два ответа PREP вслух','Разминка на 5 вопросов'];
+let tasks=S.get('tasksRu',DEFAULT_TASKS),week=S.get('weekRu',{});
+function renderWeek(){
+  let h='<thead><tr><th scope="col">Привычка</th>'+DAYS.map(d=>`<th scope="col">${d}</th>`).join('')+'<th scope="col"><span style="position:absolute;left:-9999px">Удалить</span></th></tr></thead><tbody>';
+  tasks.forEach((t,i)=>{h+=`<tr><td>${esc(t)}</td>`+DAYS.map((d,j)=>`<td><input type="checkbox" data-k="${i}-${j}" aria-label="${esc(t)}, ${d}"${week[i+'-'+j]?' checked':''}></td>`).join('')+`<td><button class="x" data-del="${i}" aria-label="Удалить: ${esc(t)}">×</button></td></tr>`});
+  if(!tasks.length)h+='<tr><td colspan="9" class="small">Список пуст. Добавьте привычку ниже.</td></tr>';
+  $('#week').innerHTML=h+'</tbody>';wprog();
+}
+function wprog(){const total=tasks.length*7;const d=Object.keys(week).filter(k=>week[k]&&+k.split('-')[0]<tasks.length).length;const p=total?Math.round(d/total*100):0;$('#wbar').style.width=p+'%';$('#wtxt').textContent=`Отмечено ${d} из ${total} (${p}%)`}
+$('#week').addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;week[k]=e.target.checked;S.set('weekRu',week);wprog()});
+$('#week').addEventListener('click',e=>{const b=e.target.closest('[data-del]');if(!b)return;const i=+b.dataset.del;tasks.splice(i,1);const nw={};Object.keys(week).forEach(k=>{const[a,d]=k.split('-').map(Number);if(a<i)nw[k]=week[k];else if(a>i)nw[(a-1)+'-'+d]=week[k]});week=nw;S.set('tasksRu',tasks);S.set('weekRu',week);renderWeek()});
+function addTask(){const v=$('#newTask').value.trim();if(!v)return;tasks.push(v);S.set('tasksRu',tasks);$('#newTask').value='';renderWeek()}
+$('#addTask').onclick=addTask;$('#newTask').onkeydown=e=>{if(e.key==='Enter')addTask()};
+$('#resetWeek').onclick=()=>{week={};S.set('weekRu',week);renderWeek()};
+renderWeek();
+
+/* =============== DICTATION =============== */
+const DICT=[
+  {say:'accommodation',ans:'accommodation',type:'Слово'},
+  {say:'Wednesday',ans:'wednesday',type:'День недели'},
+  {say:'Her surname is Fitzgerald. That’s F, I, T, Z, G, E, R, A, L, D.',ans:'fitzgerald',type:'Фамилия по буквам'},
+  {say:'environment',ans:'environment',type:'Слово'},
+  {say:'My number is oh seven nine, double five, three one two.',ans:'07955312',type:'Телефон (только цифры)',num:true},
+  {say:'questionnaire',ans:'questionnaire',type:'Слово'},
+  {say:'The postcode is C, B, 2, 8, R, T.',ans:'cb28rt',type:'Почтовый индекс',num:true},
+  {say:'February',ans:'february',type:'Месяц'},
+  {say:'It’s fifty… sorry, I mean fifteen pounds.',ans:'15',type:'Цена (с исправлением)',num:true},
+  {say:'necessary',ans:'necessary',type:'Слово'},
+  {say:'The office is at 42 Harbour Road.',ans:'42 harbour road',type:'Адрес (номер и улица)'},
+  {say:'The meeting is on the thirteenth of September.',ans:'13 september',type:'Дата',alt:['september 13','13th september','september 13th']}
+];
+let di=0,dScore=0,dDone=new Set();
+function dRender(){const it=DICT[di];$('#dType').textContent=`${di+1} из ${DICT.length}: ${it.type}`;$('#dIn').value='';$('#dFb').className='fb';$('#dScore').textContent=`Счёт: ${dScore} из ${dDone.size}`}
+function dPlay(r){if(!speak(DICT[di].say,r))fb($('#dFb'),false,'Браузер не умеет читать вслух. Попросите кого-то прочитать или нажмите «показать текст».')}
+$('#dPlay').onclick=()=>dPlay(0.9);$('#dSlow').onclick=()=>dPlay(0.6);
+$('#dShow').onclick=()=>fb($('#dFb'),true,'В записи: “'+DICT[di].say+'”');
+function dCheck(){const it=DICT[di];const v=norm($('#dIn').value);if(!v){fb($('#dFb'),false,'Сначала напишите ответ.');return}
+  const ok=it.num?v.replace(/\s/g,'')===it.ans:(v===it.ans||(it.alt||[]).includes(v));
+  if(!dDone.has(di)){dDone.add(di);if(ok)dScore++}
+  const shown=it.num?it.ans.toUpperCase():it.ans.replace(/\b\w/g,c=>c.toUpperCase());
+  fb($('#dFb'),ok,ok?'Верно.':`Не совсем. Правильно: ${shown}. Если это слово часто путаете — добавьте в «Мои ошибки».`);
+  $('#dScore').textContent=`Счёт: ${dScore} из ${dDone.size}`}
+$('#dCheck').onclick=dCheck;$('#dIn').onkeydown=e=>{if(e.key==='Enter')dCheck()};
+$('#dNext').onclick=()=>{di=(di+1)%DICT.length;if(di===0){dScore=0;dDone.clear()}dRender()};
+dRender();
+
+/* =============== READING TIMER =============== */
+const PH=[{n:'Section 1',s:'S1',m:12},{n:'Section 2',s:'S2',m:18},{n:'Section 3',s:'S3',m:23},{n:'Перенос и проверка',s:'Check',m:7}];
+let ph=0,left=PH[0].m*60,tick=null,endAt=0;
+$('#phases').innerHTML=PH.map(p=>`<div style="flex:${p.m}" title="${p.n}">${p.s} ${p.m}m</div>`).join('');
+function drawT(){$('#clock').textContent=fmt(Math.max(0,left));$('#phaseName').textContent=ph<PH.length?PH[ph].n:'Время вышло. Ручки вниз.';$$('#phases div').forEach((d,i)=>{d.className=i<ph?'done':i===ph?'on':''})}
+function nextPhase(){ph++;beep();if(ph>=PH.length){stopT();left=0}else{left=PH[ph].m*60;if(tick)endAt=Date.now()+left*1000}drawT()}
+function stopT(){clearInterval(tick);tick=null;$('#tStart').textContent=ph>=PH.length?'Старт':'Продолжить'}
+$('#tStart').onclick=()=>{if(tick){stopT();return}if(ph>=PH.length){ph=0;left=PH[0].m*60}endAt=Date.now()+left*1000;tick=setInterval(()=>{left=Math.round((endAt-Date.now())/1000);if(left<=0)nextPhase();else drawT()},250);$('#tStart').textContent='Пауза';drawT()};
+$('#tNext').onclick=()=>{if(ph<PH.length)nextPhase()};
+$('#tReset').onclick=()=>{stopT();ph=0;left=PH[0].m*60;$('#tStart').textContent='Старт';drawT()};
+drawT();
+
+/* =============== WORDS =============== */
+const DECKS={
+  butterflies:[{f:'prey',b:'добыча',s:'an animal hunted by another'},{f:'halt or reverse',b:'остановить или обратить вспять'},{f:'knock-on effect',b:'эффект домино',s:'an indirect result that spreads'},{f:'to some extent',b:'отчасти',s:'partly, to a limited degree'},{f:'well equipped to cope',b:'хорошо готов справиться'},{f:'being dragged along',b:'быть вынужденным следовать',s:'forced to follow a process'},{f:'abundance',b:'изобилие; численность',s:'the total number or quantity'},{f:'subtle',b:'едва заметный, тонкий',s:'not obvious'},{f:'northwards extent',b:'северная граница ареала',s:'the northernmost limit'},{f:'coppiced woodland',b:'лес с порослевой рубкой',s:'trees cut to ground level so they regrow'},{f:'amateur',b:'любитель',s:'not a professional'},{f:'negligible',b:'незначительный',s:'so small it doesn’t matter'},{f:'endangered',b:'под угрозой исчезновения'}],
+  micro:[{f:'harbour',b:'гавань'},{f:'fibres',b:'волокна'},{f:'impair',b:'ухудшать',s:'make weaker or worse'},{f:'fertiliser',b:'удобрение',s:'fertile = плодородный'},{f:'carry out',b:'выполнять, проводить',s:'carry out research'},{f:'nutrient',b:'питательное вещество'},{f:'topsoil',b:'верхний слой почвы'},{f:'thereby',b:'тем самым'},{f:'set out',b:'отправляться; излагать'},{f:'wetlands',b:'водно-болотные угодья'},{f:'inhibit',b:'тормозить, подавлять'},{f:'implications',b:'последствия',s:'possible effects of something'},{f:'decaying',b:'разлагающийся'},{f:'impoverished',b:'обедневший, истощённый',s:'impoverished soil = poor soil'}],
+  map:[{f:'junction / intersection / crossroads',b:'перекрёсток'},{f:'T-junction',b:'Т-образный перекрёсток'},{f:'roundabout',b:'круговое движение'},{f:'clockwise / anticlockwise',b:'по / против часовой стрелки'},{f:'adjacent to',b:'непосредственно рядом'},{f:'farther along',b:'дальше по улице'},{f:'slightly beyond',b:'немного дальше'},{f:'opposite',b:'напротив'},{f:'pedestrian / zebra crossing',b:'пешеходный переход'},{f:'lead off to',b:'вести к, ответвляться к'},{f:'run parallel to',b:'идти параллельно'}],
+  trends:[{f:'rise / increase / climb',b:'расти'},{f:'fall / decline / drop',b:'снижаться'},{f:'fluctuate',b:'колебаться'},{f:'level off',b:'выровняться, стабилизироваться'},{f:'peak at',b:'достичь пика на уровне'},{f:'dramatically / sharply',b:'резко'},{f:'gradually / steadily',b:'постепенно / стабильно'},{f:'slightly',b:'незначительно'},{f:'respectively',b:'соответственно'},{f:'as opposed to',b:'в отличие от'},{f:'just under half',b:'чуть меньше половины'},{f:'expenditure',b:'расходы'},{f:'revenue',b:'выручка, доход'}],
+  linkers:[{f:'Furthermore',b:'Более того',s:'add a point'},{f:'However',b:'Однако',s:'contrast'},{f:'Whereas',b:'тогда как',s:'contrast in one sentence'},{f:'For instance',b:'Например'},{f:'As a result',b:'В результате'},{f:'Thereby',b:'тем самым'},{f:'In my view',b:'По моему мнению'},{f:'To some extent',b:'В некоторой степени'},{f:'In conclusion',b:'В заключение'}]
+};
+const ds=$('#deckSel');ds.value=S.get('deck','butterflies');if(!DECKS[ds.value])ds.value='butterflies';
+const showDeck=()=>{S.set('deck',ds.value);deck($('#wordDeck'),DECKS[ds.value],ds.value)};
+ds.onchange=showDeck;showDeck();
+
+/* =============== MISTAKES =============== */
+const R={spelling:{l:'Спеллинг',tip:'Ведите список слов, в которых ошибаетесь, и делайте 5-минутный диктант каждый день. Пишите ответы заглавными.'},
+  para:{l:'Не узнал парафраз',tip:'После каждого теста выписывайте пары «слово из вопроса — слово из текста». Это ваш банк синонимов.'},
+  detail:{l:'Пропустил деталь',tip:'Читайте вперёд и предсказывайте тип ответа до того, как запись или текст до него дойдут.'},
+  trap:{l:'Попался на дистрактор',tip:'Слушайте до конца фразы. Дословно повторённое слово — часто ловушка.'},
+  time:{l:'Не хватило времени',tip:'Работайте с таймером 12 / 18 / 23 / 7 и не тратьте больше минуты на один вопрос.'},
+  limit:{l:'Лимит слов или грамматика',tip:'Обводите инструкцию (ONE WORD ONLY) и перечитывайте предложение с ответом.'},
+  tfng:{l:'Перепутал FALSE и NOT GIVEN',tip:'FALSE — текст явно противоречит. NOT GIVEN — проверить по тексту невозможно.'},
+  other:{l:'Другое',tip:'Запишите, почему выбрали неверный ответ. Назвать проблему — половина решения.'}};
+$('#mWhy').innerHTML=Object.entries(R).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+let log=S.get('log',[]);
+function renderLog(){
+  const list=$('#mList');
+  list.innerHTML=log.length?log.map(m=>`<div class="log-item"><div><span class="tag">${esc(m.sec)}</span><span class="tag">${esc(R[m.why]?R[m.why].l:m.why)}</span><span class="small">${esc(m.date)}</span><div style="margin-top:.3rem">${m.type?`<b>${esc(m.type)}.</b> `:''}${m.mine?`Мой ответ: “${esc(m.mine)}”`:''}${m.right?`${m.mine?', ':''}правильно: “${esc(m.right)}”`:''}</div>${m.note?`<div class="small">${esc(m.note)}</div>`:''}</div><button class="x" data-id="${m.id}" aria-label="Удалить">×</button></div>`).join(''):'<p class="small">Пока пусто. После следующего теста добавьте сюда каждый неверный ответ.</p>';
+  const c={};log.forEach(m=>c[m.why]=(c[m.why]||0)+1);
+  const st=$('#mStats');
+  if(!log.length){st.innerHTML='<p class="small">Здесь появятся ваши самые частые проблемы и совет, над чем работать.</p>';return}
+  const max=Math.max(...Object.values(c));const s=Object.entries(c).sort((a,b)=>b[1]-a[1]);
+  st.innerHTML=s.map(([k,n])=>`<div class="stat"><span>${esc(R[k]?R[k].l:k)}</span><div class="bar"><i style="width:${n/max*100}%"></i></div><b>${n}</b></div>`).join('')+`<div class="tipbox"><b>Работать дальше над: ${esc(R[s[0][0]].l)}.</b> ${esc(R[s[0][0]].tip)}</div>`;
+}
+$('#mAdd').onclick=()=>{const m={id:Date.now(),date:new Date().toLocaleDateString('ru-RU'),sec:$('#mSec').value,type:$('#mType').value.trim(),mine:$('#mMine').value.trim(),right:$('#mRight').value.trim(),why:$('#mWhy').value,note:$('#mNote').value.trim()};
+  if(!m.type&&!m.mine&&!m.right&&!m.note){fb($('#mFb'),false,'Заполните хотя бы тип задания или ответы.');return}
+  log.unshift(m);S.set('log',log);['mType','mMine','mRight','mNote'].forEach(id=>$('#'+id).value='');fb($('#mFb'),true,'Добавлено.');renderLog()};
+$('#mList').onclick=e=>{const b=e.target.closest('[data-id]');if(!b)return;log=log.filter(m=>String(m.id)!==b.dataset.id);S.set('log',log);renderLog()};
+$('#mExport').onclick=async()=>{const txt=log.map(m=>`${m.date} | ${m.sec} | ${m.type} | мой: ${m.mine} | правильно: ${m.right} | ${R[m.why]?R[m.why].l:m.why}${m.note?' | '+m.note:''}`).join('\n')||'Ошибок пока нет.';
+  try{await navigator.clipboard.writeText(txt);$('#mExport').textContent='Скопировано'}catch(e){$('#mExport').textContent='Не удалось скопировать'}
+  setTimeout(()=>$('#mExport').textContent='Скопировать текстом',1800)};
+renderLog();
+
+/* =============== ROUTER =============== */
+
+/* =============== NAME + VIEW EVENT =============== */
+(function(){
+  if(EMBED){
+    const nb=$('#myName')&&$('#myName').closest('.block'); if(nb) nb.hidden=true;   /* имя спрашивает платформа */
+    const hl=document.querySelector('.home-link'); if(hl) hl.hidden=true;
+    return;
+  }
+  const inp=$('#myName'),msg=$('#nameMsg');
+  try{inp.value=localStorage.getItem('ieltsnb:name')||''}catch(e){}
+  $('#saveName').onclick=()=>{const v=inp.value.trim().slice(0,60);try{if(v)localStorage.setItem('ieltsnb:name',v);else localStorage.removeItem('ieltsnb:name')}catch(e){}msg.textContent=v?'Сохранено. Следующие результаты уйдут с этим именем.':'Имя удалено. Результаты будут анонимными.'};
+  $('#statsNote').textContent=STATS_ON?'Результаты заданий отправляются автору: анонимно или с вашим именем.':'Статистика не подключена: результаты хранятся только в этом браузере.';
+  trackEvent('view');
+})();
+</script>
+</body></html>
