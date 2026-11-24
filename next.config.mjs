@@ -21,6 +21,10 @@ const csp = [
 
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    // короткий адрес курса
+    return [{ source: '/courses/python', destination: '/p/python-course', permanent: false }];
+  },
   async headers() {
     return [
       {

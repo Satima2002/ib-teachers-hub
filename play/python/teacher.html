@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Страница учителя — коды прогресса</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero"><div class="hero-inner"><h1>Страница учителя</h1><p>Вставь коды прогресса учеников: по одному в строке.</p></div></header>
+<main class="hub">
+  <section class="box">
+    <textarea id="codes" placeholder="PYK1.…&#10;PYK1.…" aria-label="Коды прогресса" style="min-height:140px"></textarea>
+    <div class="row"><button class="hbtn" id="go" type="button">Показать таблицу</button><button class="hbtn soft" id="copy" type="button">Скопировать для Excel</button></div>
+    <p class="note">Всё считается в твоём браузере, коды никуда не отправляются.</p>
+    <div id="out"></div>
+  </section>
+</main>
+<script src="progress.js"></script>
+<script src="courses/registry.js"></script>
+<script>
+(function(){
+  var loaded = 0;
+  COURSE_FILES.forEach(function(id){ var s = document.createElement("script"); s.src = "courses/" + id + ".js"; s.onload = s.onerror = function(){ loaded++; }; document.body.appendChild(s); });
+  var rows = [];
+  function sorted(){ var o = {}; COURSE_FILES.forEach(function(id, i){ o[id] = i; }); return COURSES.slice().sort(function(a,b){ return o[a.id] - o[b.id]; }); }
+  function build(){
+    var lines = document.getElementById("codes").value.split(/\s+/).filter(function(x){ return x.indexOf("PYK1.") === 0; });
+    var head = ["Имя"].concat(sorted().map(function(c){ return c.title; }), ["Достижения", "Хорошо сам (шагов)"]);
+    rows = [head];
+    lines.forEach(function(l, i){
+      var o = PYK.decode(l); if (!o) return;
+      var done = o.d || [];
+      rows.push([o.n || ("ученик " + (i+1))].concat(sorted().map(function(c){ var s = PYK.courseStats(c, done); return s.done + "/" + s.total; }), [String((o.a || []).length), String((o.c || []).length)]));
+    });
+    var t = document.createElement("table"); t.className = "res";
+    rows.forEach(function(r, i){ var tr = document.createElement("tr"); r.forEach(function(v){ var c = document.createElement(i ? "td" : "th"); c.textContent = v; tr.appendChild(c); }); t.appendChild(tr); });
+    var out = document.getElementById("out"); out.innerHTML = ""; out.appendChild(t);
+    if (rows.length === 1) out.insertAdjacentHTML("beforeend", "<p class='note'>Не нашла ни одного кода. Код начинается с PYK1.</p>");
+  }
+  document.getElementById("go").addEventListener("click", build);
+  document.getElementById("copy").addEventListener("click", function(){ build(); var txt = rows.map(function(r){ return r.join("\t"); }).join("\n"); if (navigator.clipboard) navigator.clipboard.writeText(txt); });
+})();
+</script>
+</body>
+</html>

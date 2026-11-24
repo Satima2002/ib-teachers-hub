@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Python шаг за шагом — курс с Оркеном</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero"><div class="hero-inner">
+  <h1>Python шаг за шагом</h1>
+  <p>Курс из коротких модулей. Код запускается прямо на странице.</p>
+  <span class="sp"></span>
+  <div class="tools"><button class="tbtn" id="btnShare" type="button" aria-pressed="false">📤 Учителю: выкл</button></div>
+</div></header>
+
+<main class="hub">
+  <div class="hub-hello"><img id="orken" alt="Оркен, помощник"><p id="hello">Привет! Я Оркен. Выбери модуль и начинай. Если это твой первый раз, иди по порядку.</p></div>
+  <div class="cards" id="cards"></div>
+
+  <section class="box">
+    <h3>Мой профиль</h3>
+    <label for="pname">Имя или ник (необязательно, нужно только для кода прогресса):</label>
+    <input type="text" id="pname" maxlength="60" placeholder="например, Айя 6G" autocomplete="off">
+    <p class="note">Не пиши фамилию, почту и пароли. Достаточно имени и класса.</p>
+  </section>
+
+  <section class="box">
+    <h3>Отправлять результаты учителю?</h3>
+    <label for="share"><input type="checkbox" id="share"><span>Да, отправлять. После каждого пройденного шага учитель увидит оценку: 3 — сам, 2 — с подсказкой, 1 — нужна была помощь. Код, который ты пишешь, не отправляется. Выключить можно в любой момент.</span></label>
+    <p class="note" id="shareNote"></p>
+  </section>
+
+  <section class="box">
+    <h3>Перенести прогресс на другое устройство</h3>
+    <div class="row"><button class="hbtn" id="btnCopy" type="button">Скопировать код прогресса</button></div>
+    <p class="note" id="copyNote">Код можно сохранить в заметки или отправить учителю.</p>
+    <textarea id="codeIn" placeholder="Вставь сюда код прогресса (начинается с PYK1.)" aria-label="Код прогресса"></textarea>
+    <div class="row"><button class="hbtn soft" id="btnRestore" type="button">Восстановить прогресс</button></div>
+    <p class="note" id="restoreNote"></p>
+  </section>
+</main>
+
+<footer>Прогресс хранится в этом браузере. Проект с открытым кодом, см. README в папке курса.</footer>
+
+<script src="poses.js"></script>
+<script src="progress.js"></script>
+<script src="courses/registry.js"></script>
+<script>
+(function(){
+  var EMBED = (function(){ try { return window.parent !== window; } catch(e){ return true; } })();
+  function send(m){ if (EMBED){ m.v = 1; try { window.parent.postMessage(m, "*"); } catch(e){} } }
+  var h;
+  function postH(){ cancelAnimationFrame(h); h = requestAnimationFrame(function(){ send({type:"trainer:height", height: Math.ceil(document.body.offsetHeight)}); }); }
+  var COLORS = ["--s1","--s2","--s3","--s4"];
+  var loaded = 0;
+  COURSE_FILES.forEach(function(id){
+    var s = document.createElement("script"); s.src = "courses/" + id + ".js";
+    s.onload = s.onerror = function(){ if (++loaded === COURSE_FILES.length) render(); };
+    document.body.appendChild(s);
+  });
+  document.getElementById("orken").src = (window.POSES && POSES.wave) || "";
+
+  function render(){
+    var done = (PYK.snapshot().d || []);
+    var box = document.getElementById("cards"); box.innerHTML = "";
+    var order = {}; COURSE_FILES.forEach(function(id, i){ order[id] = i; });
+    COURSES.sort(function(a,b){ return order[a.id] - order[b.id]; });
+    COURSES.forEach(function(c, i){
+      var st = PYK.courseStats(c, done);
+      var card = document.createElement("div"); card.className = "mcard";
+      card.style.setProperty("--c", "var(" + COLORS[i % 4] + ")");
+      card.innerHTML = '<span class="ic"></span><h2></h2><small></small><div class="bar"><i></i></div><small class="cnt"></small><a class="go"></a>';
+      card.querySelector(".ic").textContent = c.icon;
+      card.querySelector("h2").textContent = c.title;
+      card.querySelector("small").textContent = c.sub;
+      card.querySelector("i").style.width = Math.round(100 * st.done / st.total) + "%";
+      card.querySelector(".cnt").textContent = "Пройдено шагов: " + st.done + " из " + st.total;
+      var a = card.querySelector("a.go");
+      a.href = "trainer.html?c=" + encodeURIComponent(c.id);
+      a.textContent = st.done === 0 ? "Начать" : (st.done === st.total ? "Пройдено ✓ Повторить" : "Продолжить");
+      box.appendChild(card);
+    });
+    postH();
+  }
+
+  var name = document.getElementById("pname");
+  name.value = PYK.get("name") || "";
+  name.addEventListener("input", function(){ PYK.set("name", name.value.trim().slice(0,60)); });
+
+  var share = document.getElementById("share"), btnShare = document.getElementById("btnShare");
+  function paintShare(){
+    var on = PYK.get("share") === "1";
+    share.checked = on;
+    btnShare.setAttribute("aria-pressed", on ? "true" : "false");
+    btnShare.textContent = "📤 Учителю: " + (on ? "вкл" : "выкл");
+    document.getElementById("shareNote").textContent = EMBED
+      ? (on ? "Включено. Имя берётся из поля «Ваше имя» над тренажёром на сайте." : "Сейчас результаты остаются только у тебя.")
+      : "Эта страница открыта сама по себе, поэтому отправка работает только внутри сайта с материалами. Код прогресса можно отправить учителю вручную.";
+  }
+  function toggle(){ PYK.set("share", PYK.get("share") === "1" ? "0" : "1"); paintShare(); }
+  share.addEventListener("change", toggle);
+  btnShare.addEventListener("click", toggle);
+  paintShare();
+
+  document.getElementById("btnCopy").addEventListener("click", function(){
+    var code = PYK.encode(), note = document.getElementById("copyNote");
+    function fallback(){ var t = document.getElementById("codeIn"); t.value = code; t.select(); note.textContent = "Код вставлен в поле ниже. Скопируй его вручную."; }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(function(){ note.textContent = "Код скопирован. Сохрани его в заметки."; }, fallback);
+    else fallback();
+  });
+  document.getElementById("btnRestore").addEventListener("click", function(){
+    var o = PYK.decode(document.getElementById("codeIn").value), note = document.getElementById("restoreNote");
+    if (!o){ note.textContent = "Не получилось: код должен начинаться с PYK1. и быть вставлен целиком."; return; }
+    PYK.apply(o); note.textContent = "Готово: прогресс добавлен."; name.value = PYK.get("name") || ""; render();
+  });
+  if (window.ResizeObserver) new ResizeObserver(postH).observe(document.body);
+})();
+</script>
+</body>
+</html>

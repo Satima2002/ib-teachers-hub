@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Python с Оркеном</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Python шаг за шагом</h1>
+    <p>Учимся вместе с Оркеном. Код запускается прямо на странице.</p>
+    <span class="sp"></span>
+    <div class="tools">
+      <a class="tbtn" href="./" id="linkHub">☰ Модули</a>
+      <button class="tbtn" id="btnShare" type="button" aria-pressed="false">📤 Учителю: выкл</button>
+      <button class="tbtn" id="btnAch" type="button" aria-expanded="false">🏆 <span id="achCount">0/9</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="top"><nav class="route" id="levelNav" aria-label="Уровни"></nav></div>
+
+<div class="achp" id="achPanel" hidden><h3>Достижения</h3><div id="achList"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<main>
+  <div class="layout">
+    <section class="panel left" id="left">
+      <div class="helper" id="helper">
+        <div class="av"><img id="helperImg" alt="Оркен, помощник"></div>
+        <div class="bub"><span class="nm">Оркен</span><span id="helperText"></span></div>
+      </div>
+      <div class="lvl-title" id="lvlTitle"></div>
+      <p class="story" id="lvlStory"></p>
+      <div class="dots" id="dots" role="group" aria-label="Шаги уровня"></div>
+      <h2 id="stepTitle"></h2>
+      <p class="skill" id="stepSkill"></p>
+      <div class="task" id="stepText"></div>
+      <div class="quiz" id="quizBox"></div>
+      <div class="actions" id="actions">
+        <button class="btn-main" id="btnCheck" type="button">✓ Проверить</button>
+        <button class="btn-soft" id="btnHint" type="button">💡 Подсказка</button>
+      </div>
+      <div class="hintbox" id="hintBox" hidden></div>
+      <div id="feedback" aria-live="polite"></div>
+      <details class="sol" id="solBox" hidden><summary>Показать решение</summary><pre id="solCode"></pre></details>
+      <div class="stepnav">
+        <button class="btn-soft" id="btnPrev" type="button">← Назад</button>
+        <button class="btn-next" id="btnNext" type="button" hidden>Дальше →</button>
+      </div>
+    </section>
+
+    <section class="right" style="min-width:0">
+      <div class="ide">
+        <div class="ide-bar">
+          <span class="ide-name" id="ideName">main.py</span><span class="sp"></span>
+          <button class="btn run" id="btnRun" type="button">▶ Запустить</button>
+          <button class="btn stop" id="btnStop" type="button" disabled>■ Стоп</button>
+          <button class="btn ghost" id="btnReset" type="button" title="Вернуть начальный код">↺ Сначала</button>
+        </div>
+                <div class="snips" id="snips" hidden></div>
+        <div class="code" id="codeWrap">
+          <div class="gutter" id="gutter" aria-hidden="true"></div>
+          <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" aria-label="Редактор кода Python"></textarea>
+        </div>
+        <div class="parsons" id="parsons" hidden></div>
+        <div class="console" id="console" aria-live="polite"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>Python работает прямо в браузере. Прогресс и достижения сохраняются в этом браузере. Результаты уходят учителю только если ты включил «📤 Учителю».</footer>
+
+<script>window.skFail=false;</script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js" onerror="window.skFail=true"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js" onerror="window.skFail=true"></script>
+<script src="poses.js"></script>
+<script src="core.js"></script>
+<script src="courses/registry.js"></script>
+<script>
+/* Загружаем только нужный модуль: trainer.html?c=basics */
+(function(){
+  var id = new URLSearchParams(location.search).get("c") || "";
+  if (COURSE_FILES.indexOf(id) < 0){ location.replace("./"); return; }
+  function load(src, cb){ var s = document.createElement("script"); s.src = src; s.onload = cb; s.onerror = function(){ document.body.insertAdjacentHTML("afterbegin", '<p style="padding:20px">Не удалось загрузить модуль. Обнови страницу.</p>'); }; document.body.appendChild(s); }
+  load("courses/" + id + ".js", function(){ load("engine.js"); });
+})();
+</script>
+</body>
+</html>
